@@ -1,12 +1,4 @@
-/*
- * SPDX-FileCopyrightText: 2024 SAP Spartacus team <spartacus-team@sap.com>
- *
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { LayoutConfig } from '@spartacus/storefront';
-
-//import { LayoutConfig } from '../../layout/config/layout-config';
 
 /**
  * The layout configuration is used to define the overall layout of the storefront.
@@ -21,10 +13,6 @@ import { LayoutConfig } from '@spartacus/storefront';
  * templates and/or slots, you most likely need to further adjust or replace this configuration.
  */
 export const EylayoutConfig: LayoutConfig = {
-  // deferredLoading: {
-  //   strategy: DeferLoadingStrategy.DEFER,
-  //   intersectionMargin: '50px',
-  // },
   layoutSlots: {
     header: {
       lg: {
@@ -111,16 +99,7 @@ export const EylayoutConfig: LayoutConfig = {
     LoginPageTemplate: {
       header: {
         lg: {
-          slots: [
-            //'PreHeader',
-            'SiteLogo',
-            //'NavigationBar',
-            // 'SearchBox',
-            // 'SiteLinks',
-            // 'SiteLogin',
-            //'SiteContext',
-            //'MiniCart',
-          ],
+          slots: ['SiteLogo'],
         },
 
         slots: ['SiteLogo'],

@@ -1,13 +1,10 @@
-//$logo-url: "assets/ey-icon.png";
 header {
   .header {
-    //display: none;
     width: 100% !important;
     max-height: 100px !important;
     background-color: #2e2e38;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
-    // display: ruby-text;
   }
   .SiteLinks {
     color: whitesmoke;
@@ -25,7 +22,6 @@ header {
 
   .SiteLogo {
     display: block;
-    // @include logo("assets/ey-icon.png", 150px, 50px);
     background-image: url("/assets/ey-icon2.png");
     background-size: contain;
     background-repeat: no-repeat;
