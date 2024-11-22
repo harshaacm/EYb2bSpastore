@@ -1,0 +1,16 @@
+{
+  "loginTranslation": {
+    "fields": {
+      "email": {
+        "label": "Enter your email address*"
+      }
+    },
+    "loginTranslation1": {
+      "fields": {
+        "password": {
+          "label": "Enter your Password*"
+        }
+      }
+    }
+  }
+}

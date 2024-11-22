@@ -1,0 +1,50 @@
+<div class="login-page">
+  <div class="image-section">
+    <img src="assets/Ey image.jpg" alt="Login Image" />
+  </div>
+  <div class="form-section">
+    <cx-spinner class="overlay" *ngIf="isUpdating$ | async"></cx-spinner>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <label>
+        <span class="label-content">
+          {{ "loginTranslation.fields.email.label" | cxTranslate }}
+        </span>
+        <input
+          required="true"
+          type="email"
+          class="form-control"
+          formControlName="userId"
+          placeholder="{{ 'loginForm.emailAddress.placeholder' | cxTranslate }}"
+        />
+      </label>
+
+      <label>
+        <span class="label-content">
+          {{
+            "loginTranslation.loginTranslation1.fields.password.label"
+              | cxTranslate
+          }}
+        </span>
+        <input
+          required="true"
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="{{ 'loginForm.password.placeholder' | cxTranslate }}"
+        />
+      </label>
+
+      <a [routerLink]="{ cxRoute: 'forgotPassword' } | cxUrl" class="btn-link">
+        {{ "loginForm.forgotPassword" | cxTranslate }}
+      </a>
+
+      <button
+        type="submit"
+        class="btn btn-block btn-primary"
+        [disabled]="form.disabled"
+      >
+        {{ "loginForm.signIn" | cxTranslate }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="carousel-container">
+  <button (click)="previous()" class="carousel-control left">‹</button>
+
+  <div class="carousel-slides">
+    <div class="carousel-slide" *ngFor="let item of visibleSlides">
+      <img [src]="item.imageUrl" alt="Carousel item" />
+      <p>{{ item.description }}</p>
+    </div>
+  </div>
+
+  <button (click)="next()" class="carousel-control right">›</button>
+</div>

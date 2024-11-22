@@ -1,0 +1,19 @@
+@import "styles-config";
+@import "@spartacus/styles/index";
+@import "./styles/scss/header";
+@import "./styles/scss/variables";
+@import "./styles/scss/login-page";
+
+footer {
+  background-color: #c4c4cd;
+  color: #747480;
+  min-height: 250px;
+  padding: 60px 20px;
+}
+
+@font-face {
+  font-family: "EYInterstate-Regular";
+  src: url("assets/ey-fonts/EYInterstate-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
