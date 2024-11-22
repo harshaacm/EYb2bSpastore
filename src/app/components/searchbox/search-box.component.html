@@ -1,6 +1,5 @@
 <div [attr.aria-label]="'searchBox.productSearch' | cxTranslate" role="search">
   <label class="searchbox" [class.dirty]="!!searchInput.value">
-    <!-- TODO: (CXSPA-6929) - Remove feature flag next major release -->
     <input
       #searchInput
       [placeholder]="'searchBox.placeholder' | cxTranslate"
@@ -73,7 +72,7 @@
   <!--RESULT  SUGGESTIONS-->
   <ng-container *cxFeature="searchBoxFeatures.RECENT_SEARCHES_FEATURE">
     <div class="message" *ngIf="result?.suggestions?.length">
-      {{ 'searchBox.suggestions' | cxTranslate }}
+      {{ "searchBox.suggestions" | cxTranslate }}
     </div>
   </ng-container>
   <ul
@@ -84,7 +83,7 @@
     <li *ngFor="let suggestion of result.suggestions">
       <a
         role="option"
-        [innerHTML]="suggestion | cxHighlight: searchInput.value"
+        [innerHTML]="suggestion | cxHighlight : searchInput.value"
         [routerLink]="
           {
             cxRoute: 'search',
@@ -126,7 +125,7 @@
   <!--RESULT  PRODUCTS-->
   <ng-container *cxFeature="searchBoxFeatures.RECENT_SEARCHES_FEATURE">
     <div class="message" *ngIf="result.products?.length">
-      {{ 'searchBox.products' | cxTranslate }}
+      {{ "searchBox.products" | cxTranslate }}
     </div>
   </ng-container>
   <ul
@@ -170,7 +169,7 @@
     </li>
   </ul>
   <span id="initialDescription" class="cx-visually-hidden">
-    {{ 'searchBox.initialDescription' | cxTranslate }}
+    {{ "searchBox.initialDescription" | cxTranslate }}
   </span>
   <div
     *ngIf="result.suggestions?.length || result.products?.length"
@@ -178,13 +177,13 @@
     class="cx-visually-hidden"
   >
     {{
-      'searchBox.suggestionsResult'
-        | cxTranslate: { count: result.suggestions?.length }
+      "searchBox.suggestionsResult"
+        | cxTranslate : { count: result.suggestions?.length }
     }}
     {{
-      'searchBox.productsResult'
-        | cxTranslate: { count: result.products?.length }
+      "searchBox.productsResult"
+        | cxTranslate : { count: result.products?.length }
     }}
-    {{ 'searchBox.initialDescription' | cxTranslate }}
+    {{ "searchBox.initialDescription" | cxTranslate }}
   </div>
 </div>
