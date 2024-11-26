@@ -1,9 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2024 SAP Spartacus team <spartacus-team@sap.com>
- *
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -26,12 +20,8 @@ import {
 } from '@spartacus/core';
 import { Observable, Subscription, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-//import { ICON_TYPE } from '../../../cms-components/misc/icon/index';
-//import { CmsComponentData } from '../../../cms-structure/page/model/cms-component-data';
-//import { BREAKPOINT, BreakpointService } from '../../../layout/';
 import { SearchBoxComponentService } from './search-box-component.service';
 import { SearchBoxFeatures } from './search-box-features.model';
-//import { SearchBoxOutlets } from './search-box-outlets.model';
 import {
   SearchBoxProductSelectedEvent,
   SearchBoxSuggestionSelectedEvent,
@@ -88,10 +78,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
 
   searchBoxActive: boolean = false;
 
-  /**
-   * In some occasions we need to ignore the close event,
-   * for example when we click inside the search result section.
-   */
   private ignoreCloseEvent = false;
 
   chosenWord = '';
@@ -102,15 +88,12 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     return this.breakpointService?.isDown(BREAKPOINT.sm);
   }
 
-  // TODO: (CXSPA-6929) - Remove getter next major release.
-  /** Temporary getter, not ment for public use */
   get a11ySearchBoxMobileFocusEnabled(): boolean {
     return (
       this.featureConfigService?.isEnabled('a11ySearchBoxMobileFocus') || false
     );
   }
 
-  // TODO: (CXSPA-6929) - Make dependencies no longer optional next major release
   @Optional() changeDetecorRef = inject(ChangeDetectorRef, { optional: true });
 
   @Optional() breakpointService = inject(BreakpointService, { optional: true });
@@ -127,11 +110,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     protected routingService: RoutingService
   ) {}
 
-  /**
-   * Returns the SearchBox configuration. The configuration is driven by multiple
-   * layers: default configuration, (optional) backend configuration and (optional)
-   * input configuration.
-   */
   protected config$: Observable<SearchBoxConfig> = (
     this.componentData?.data$ || of({} as any)
   ).pipe(
@@ -146,8 +124,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         displayProducts: isBool(config, 'displayProducts'),
         displayProductImages: isBool(config, 'displayProductImages'),
         displaySuggestions: isBool(config, 'displaySuggestions'),
-        // we're merging the (optional) input of this component, but write the merged
-        // result back to the input property, as the view logic depends on it.
+
         ...this.config,
       };
     }),
@@ -192,9 +169,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     this.subscriptions.add(UIEventSubscription);
   }
 
-  /**
-   * The Searchbox should not be focusable while not visible.
-   */
   getTabIndex(isMobile: boolean | null): number {
     if (isMobile) {
       return this.searchBoxActive ? 0 : -1;
@@ -264,7 +238,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   protected blurSearchBox(event: UIEvent): void {
     this.searchBoxComponentService.toggleBodyClass(SEARCHBOX_IS_ACTIVE, false);
     this.searchBoxActive = false;
-    // TODO: (CXSPA-6929) - Remove feature flag next major release
     if (this.a11ySearchBoxMobileFocusEnabled) {
       this.changeDetecorRef?.detectChanges();
       this.searchButton!.nativeElement.focus();

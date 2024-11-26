@@ -20,7 +20,6 @@ import { EylayoutConfig } from '../config/layout-config';
   declarations: [],
   imports: [],
   providers: [
-    //provideConfig(layoutConfig),
     provideConfig(EylayoutConfig),
     provideConfig(mediaConfig),
     ...defaultCmsContentProviders,
@@ -28,8 +27,6 @@ import { EylayoutConfig } from '../config/layout-config';
       backend: {
         occ: {
           baseUrl: 'https://localhost:9002/',
-          // baseUrl: 'https://spartacus-test.eastus.cloudapp.azure.com:8443/',
-          //baseUrl: 'https://spartacus-demo.eastus.cloudapp.azure.com:8443/',
         },
       },
     }),
