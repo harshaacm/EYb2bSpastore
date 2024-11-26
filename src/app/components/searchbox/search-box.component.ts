@@ -238,7 +238,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   protected blurSearchBox(event: UIEvent): void {
     this.searchBoxComponentService.toggleBodyClass(SEARCHBOX_IS_ACTIVE, false);
     this.searchBoxActive = false;
-    // TODO: (CXSPA-6929) - Remove feature flag next major release
     if (this.a11ySearchBoxMobileFocusEnabled) {
       this.changeDetecorRef?.detectChanges();
       this.searchButton!.nativeElement.focus();

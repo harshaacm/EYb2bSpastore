@@ -16,16 +16,7 @@ export const EylayoutConfig: LayoutConfig = {
   layoutSlots: {
     header: {
       lg: {
-        slots: [
-          //'PreHeader',
-          'SiteLogo',
-          //'NavigationBar',
-          'SearchBox',
-          'SiteLinks',
-          'SiteLogin',
-          //'SiteContext',
-          //'MiniCart',
-        ],
+        slots: ['SiteLogo', 'SearchBox', 'SiteLinks', 'SiteLogin'],
       },
       slots: ['PreHeader', 'SiteLogo', 'SearchBox', 'MiniCart'],
     },
