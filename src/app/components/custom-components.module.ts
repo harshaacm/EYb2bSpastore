@@ -2,13 +2,13 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBoxModule } from './ey-searchbox/ey-search-box.module';
 import { LoginFormModule } from './ey-login-form/ey-login-form.module';
-import { CustomFooterComponent } from './ey-custom-footer/ey-custom-footer.component';
-import { CarouselComponent } from './ey-carousel/ey-carousel.component';
+import { EyCustomFooterComponent } from './ey-custom-footer/ey-custom-footer.component';
+import { EyCarouselComponent } from './ey-carousel/ey-carousel.component';
 import { CmsConfig, ConfigModule } from '@spartacus/core';
 import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-registration-form.module';
 
 @NgModule({
-  declarations: [CustomFooterComponent, CarouselComponent],
+  declarations: [EyCustomFooterComponent, EyCarouselComponent],
   imports: [
     CommonModule,
     SearchBoxModule,
@@ -16,9 +16,6 @@ import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-
     UserRegistrationFormModule,
     ConfigModule.withConfig({
       cmsComponents: {
-        AnonymousConsentManagementBannerComponent: {
-          component: {},
-        },
         AnonymousConsentOpenDialogComponent: {
           component: {},
         },
@@ -29,13 +26,10 @@ import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-
           component: {},
         },
         FooterNavigationComponent: {
-          component: CustomFooterComponent,
+          component: EyCustomFooterComponent,
         },
         cmsitem_00000001: {
-          component: CarouselComponent,
-        },
-        PageTitleComponent: {
-          component: {},
+          component: EyCarouselComponent,
         },
       },
     } as CmsConfig),
@@ -43,8 +37,8 @@ import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-
   exports: [
     SearchBoxModule,
     LoginFormModule,
-    CustomFooterComponent,
-    CarouselComponent,
+    EyCustomFooterComponent,
+    EyCarouselComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

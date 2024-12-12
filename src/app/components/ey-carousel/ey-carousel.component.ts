@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './ey-carousel.component.html',
   styleUrls: ['./ey-carousel.component.scss'],
 })
-export class CarouselComponent {
+export class EyCarouselComponent {
   @Input() items: any[] = [];
   currentIndex = 0;
   slidesToShow = 4;

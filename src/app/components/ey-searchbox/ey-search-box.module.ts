@@ -8,7 +8,7 @@ import {
   UrlModule,
   provideDefaultConfig,
 } from '@spartacus/core';
-import { SearchBoxComponent } from './ey-search-box.component';
+import { EySearchBoxComponent } from './ey-search-box.component';
 import { IconModule, MediaModule, OutletModule } from '@spartacus/storefront';
 import { HighlightPipe } from './highlight.pipe';
 
@@ -27,12 +27,12 @@ import { HighlightPipe } from './highlight.pipe';
     provideDefaultConfig(<CmsConfig>{
       cmsComponents: {
         SearchBoxComponent: {
-          component: SearchBoxComponent,
+          component: EySearchBoxComponent,
         },
       },
     }),
   ],
-  declarations: [SearchBoxComponent, HighlightPipe],
-  exports: [SearchBoxComponent, HighlightPipe],
+  declarations: [EySearchBoxComponent, HighlightPipe],
+  exports: [EySearchBoxComponent, HighlightPipe],
 })
 export class SearchBoxModule {}

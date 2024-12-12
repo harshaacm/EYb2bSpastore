@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomFooterComponent } from './ey-custom-footer.component';
+import { EyCustomFooterComponent } from './ey-custom-footer.component';
 
 describe('CustomFooterComponent', () => {
-  let component: CustomFooterComponent;
-  let fixture: ComponentFixture<CustomFooterComponent>;
+  let component: EyCustomFooterComponent;
+  let fixture: ComponentFixture<EyCustomFooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CustomFooterComponent],
+      declarations: [EyCustomFooterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomFooterComponent);
+    fixture = TestBed.createComponent(EyCustomFooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

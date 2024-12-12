@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SearchboxComponent } from './ey-search-box.component';
+import { EySearchBoxComponent } from './ey-search-box.component';
 
 describe('SearchboxComponent', () => {
-  let component: SearchboxComponent;
-  let fixture: ComponentFixture<SearchboxComponent>;
+  let component: EySearchBoxComponent;
+  let fixture: ComponentFixture<EySearchBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchboxComponent],
+      declarations: [EySearchBoxComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchboxComponent);
+    fixture = TestBed.createComponent(EySearchBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

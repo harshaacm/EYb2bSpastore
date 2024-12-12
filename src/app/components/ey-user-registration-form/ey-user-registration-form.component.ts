@@ -18,7 +18,7 @@ import {
 } from '@spartacus/core';
 import { Title } from '@spartacus/user/profile/root';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { UserRegistrationFormService } from './ey-user-registration-form.componentservice';
+import { EyUserRegistrationFormService } from './ey-user-registration-form.componentservice';
 
 @Component({
   selector: 'cx-user-registration-form',
@@ -26,13 +26,13 @@ import { UserRegistrationFormService } from './ey-user-registration-form.compone
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EyUserRegistrationFormComponent implements OnDestroy {
-  titles$: Observable<Title[]> = this.userRegistrationFormService.getTitles();
+  titles$: Observable<Title[]> = this.EyuserRegistrationFormService.getTitles();
 
   countries$: Observable<Country[]> =
-    this.userRegistrationFormService.getCountries();
+    this.EyuserRegistrationFormService.getCountries();
 
   regions$: Observable<Region[]> =
-    this.userRegistrationFormService.getRegions();
+    this.EyuserRegistrationFormService.getRegions();
 
   registerForm: FormGroup;
 
@@ -60,7 +60,7 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
   ];
 
   constructor(
-    protected userRegistrationFormService: UserRegistrationFormService,
+    protected EyuserRegistrationFormService: EyUserRegistrationFormService,
     protected fb: FormBuilder
   ) {
     this.registerForm = this.createForm();
@@ -161,18 +161,18 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     if (this.registerForm.valid) {
       this.isLoading$.next(true);
       this.subscriptions.add(
-        this.userRegistrationFormService
-          .registerUser(this.registerForm)
-          .subscribe({
-            complete: () => this.isLoading$.next(false),
-            error: () => {
-              this.isLoading$.next(false);
-              this.globalMessageService?.add(
-                { key: 'userRegistrationForm.messageToFailedToRegister' },
-                GlobalMessageType.MSG_TYPE_ERROR
-              );
-            },
-          })
+        this.EyuserRegistrationFormService.registerUser(
+          this.registerForm
+        ).subscribe({
+          complete: () => this.isLoading$.next(false),
+          error: () => {
+            this.isLoading$.next(false);
+            this.globalMessageService?.add(
+              { key: 'userRegistrationForm.messageToFailedToRegister' },
+              GlobalMessageType.MSG_TYPE_ERROR
+            );
+          },
+        })
       );
     } else {
       this.registerForm.markAllAsTouched();

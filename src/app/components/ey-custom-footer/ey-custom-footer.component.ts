@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './ey-custom-footer.component.html',
   styleUrl: './ey-custom-footer.component.scss',
 })
-export class CustomFooterComponent implements OnInit {
+export class EyCustomFooterComponent implements OnInit {
   year!: number;
 
   ngOnInit(): void {

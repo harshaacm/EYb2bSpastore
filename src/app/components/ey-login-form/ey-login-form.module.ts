@@ -15,8 +15,8 @@ import {
   PasswordVisibilityToggleModule,
   SpinnerModule,
 } from '@spartacus/storefront';
-import { LoginFormComponentService } from './ey-login-form.component.service';
-import { LoginFormComponent } from './ey-login-form.component';
+import { LoginFormComponentService } from '@spartacus/user/account/components';
+import { EyLoginFormComponent } from './ey-login-form.component';
 import { RegisterComponent } from '@spartacus/user/profile/components';
 
 @NgModule({
@@ -34,13 +34,13 @@ import { RegisterComponent } from '@spartacus/user/profile/components';
     ConfigModule.withConfig({
       cmsComponents: {
         ReturningCustomerLoginComponent: {
-          component: LoginFormComponent,
+          component: EyLoginFormComponent,
           guards: [NotAuthGuard],
         },
       },
     } as CmsConfig),
   ],
   providers: [LoginFormComponentService],
-  declarations: [LoginFormComponent],
+  declarations: [EyLoginFormComponent],
 })
 export class LoginFormModule {}

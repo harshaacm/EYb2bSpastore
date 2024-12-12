@@ -28,9 +28,8 @@ import { filter, switchMap, take, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class UserRegistrationFormService {
+export class EyUserRegistrationFormService {
   private _form: FormGroup = this.buildForm();
-
   /*
    * Initializes form structure for registration.
    */

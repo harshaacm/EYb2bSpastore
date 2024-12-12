@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LoginFormComponentService } from './ey-login-form.component.service';
+import { LoginFormComponentService } from '@spartacus/user/account/components';
 
 @Component({
   selector: 'cx-login-form',
@@ -15,7 +15,7 @@ import { LoginFormComponentService } from './ey-login-form.component.service';
   styleUrls: ['./ey-login-form.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LoginFormComponent {
+export class EyLoginFormComponent {
   constructor(protected service: LoginFormComponentService) {}
 
   form: UntypedFormGroup = this.service.form;

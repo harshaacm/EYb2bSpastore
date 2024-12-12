@@ -20,7 +20,7 @@ import {
 } from '@spartacus/core';
 import { Observable, Subscription, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { SearchBoxComponentService } from './ey-search-box-component.service';
+import { SearchBoxComponentService } from '@spartacus/storefront';
 import { SearchBoxFeatures } from './ey-search-box-features.model';
 import {
   SearchBoxProductSelectedEvent,
@@ -54,7 +54,7 @@ const SEARCHBOX_IS_ACTIVE = 'searchbox-is-active';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchBoxComponent implements OnInit, OnDestroy {
+export class EySearchBoxComponent implements OnInit, OnDestroy {
   readonly searchBoxOutlets = SearchBoxOutlets;
   readonly searchBoxFeatures = SearchBoxFeatures;
   @Input()
@@ -103,7 +103,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   });
 
   constructor(
-    protected searchBoxComponentService: SearchBoxComponentService,
+    protected EysearchBoxComponentService: SearchBoxComponentService,
     @Optional()
     protected componentData: CmsComponentData<CmsSearchBoxComponent>,
     protected winRef: WindowRef,
@@ -132,7 +132,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   );
 
   results$: Observable<SearchResults> = this.config$.pipe(
-    switchMap((config) => this.searchBoxComponentService.getResults(config))
+    switchMap((config) => this.EysearchBoxComponentService.getResults(config))
   );
 
   ngOnInit(): void {
@@ -153,14 +153,14 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
     this.subscriptions.add(routeStateSubscription);
 
     const chosenWordSubscription =
-      this.searchBoxComponentService.chosenWord.subscribe((chosenWord) => {
+      this.EysearchBoxComponentService.chosenWord.subscribe((chosenWord) => {
         this.updateChosenWord(chosenWord);
       });
 
     this.subscriptions.add(chosenWordSubscription);
 
     const UIEventSubscription =
-      this.searchBoxComponentService.sharedEvent.subscribe(
+      this.EysearchBoxComponentService.sharedEvent.subscribe(
         (event: KeyboardEvent) => {
           this.propagateEvent(event);
         }
@@ -180,7 +180,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
    * Closes the searchBox and opens the search result page.
    */
   search(query: string): void {
-    this.searchBoxComponentService.search(query, this.config);
+    this.EysearchBoxComponentService.search(query, this.config);
     // force the searchBox to open
     this.open();
   }
@@ -191,7 +191,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   open(): void {
     if (this.a11ySearchBoxMobileFocusEnabled) {
       if (!this.searchBoxActive) {
-        this.searchBoxComponentService.toggleBodyClass(
+        this.EysearchBoxComponentService.toggleBodyClass(
           SEARCHBOX_IS_ACTIVE,
           true
         );
@@ -199,7 +199,10 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
         this.searchInput.nativeElement.focus();
       }
     } else {
-      this.searchBoxComponentService.toggleBodyClass(SEARCHBOX_IS_ACTIVE, true);
+      this.EysearchBoxComponentService.toggleBodyClass(
+        SEARCHBOX_IS_ACTIVE,
+        true
+      );
       this.searchBoxActive = true;
     }
   }
@@ -210,7 +213,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
    * @param eventData the data for the event
    */
   dispatchSuggestionEvent(eventData: SearchBoxSuggestionSelectedEvent): void {
-    this.searchBoxComponentService.dispatchSuggestionSelectedEvent(eventData);
+    this.EysearchBoxComponentService.dispatchSuggestionSelectedEvent(eventData);
   }
 
   /**
@@ -219,7 +222,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
    * @param eventData the data for the event
    */
   dispatchProductEvent(eventData: SearchBoxProductSelectedEvent): void {
-    this.searchBoxComponentService.dispatchProductSelectedEvent(eventData);
+    this.EysearchBoxComponentService.dispatchProductSelectedEvent(eventData);
   }
 
   /**
@@ -235,7 +238,10 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   }
 
   protected blurSearchBox(event: UIEvent): void {
-    this.searchBoxComponentService.toggleBodyClass(SEARCHBOX_IS_ACTIVE, false);
+    this.EysearchBoxComponentService.toggleBodyClass(
+      SEARCHBOX_IS_ACTIVE,
+      false
+    );
     this.searchBoxActive = false;
     if (this.a11ySearchBoxMobileFocusEnabled) {
       this.changeDetecorRef?.detectChanges();
@@ -261,7 +267,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
    * to focus the input again when it's already open.
    * */
   avoidReopen(event: UIEvent): void {
-    if (this.searchBoxComponentService.hasBodyClass(SEARCHBOX_IS_ACTIVE)) {
+    if (this.EysearchBoxComponentService.hasBodyClass(SEARCHBOX_IS_ACTIVE)) {
       this.close(event);
       event.preventDefault();
     }
@@ -355,7 +361,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
       return;
     }
     this.close(event);
-    this.searchBoxComponentService.launchSearchPage(query);
+    this.EysearchBoxComponentService.launchSearchPage(query);
   }
 
   /**
@@ -375,7 +381,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   clear(el: HTMLInputElement): void {
     this.disableClose();
     el.value = '';
-    this.searchBoxComponentService.clearResults();
+    this.EysearchBoxComponentService.clearResults();
 
     // Use Timeout to run after blur event to prevent the searchbox from closing on mobile
     setTimeout(() => {

@@ -15,10 +15,12 @@
       },
       "gender": {
         "label": "Gender",
-        "placeholder": "Select"
+        "placeholder": "Select",
+        "errormsg": "Gender"
       },
       "dob": {
-        "label": "DOB"
+        "label": "DOB",
+        "errormsg": "DOB"
       },
       "age": {
         "label": "Age",
@@ -26,7 +28,8 @@
       },
       "qualification": {
         "label": "Qualification",
-        "placeholder": "Select Qualifiaction"
+        "placeholder": "Select Qualification",
+        "errormsg": "Qualification"
       },
       "companyName": {
         "label": "Company name",

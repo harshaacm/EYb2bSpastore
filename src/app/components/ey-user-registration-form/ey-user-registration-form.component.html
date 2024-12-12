@@ -114,7 +114,14 @@
         }}"
       >
       </ng-select>
-      <cx-form-errors [control]="registerForm.get('gender')"></cx-form-errors>
+      <cx-form-errors
+        *cxFeature="'formErrorsDescriptiveMessages'"
+        [translationParams]="{
+          label:
+            'userRegistrationTranslations.fields.gender.errormsg' | cxTranslate
+        }"
+        [control]="registerForm.get('gender')"
+      ></cx-form-errors>
     </label>
 
     <label>
@@ -132,7 +139,14 @@
         max="{{ maxDate }}"
         (change)="calculateAge()"
       />
-      <cx-form-errors [control]="registerForm.get('dob')"></cx-form-errors>
+      <cx-form-errors
+        *cxFeature="'formErrorsDescriptiveMessages'"
+        [translationParams]="{
+          label:
+            'userRegistrationTranslations.fields.dob.errormsg' | cxTranslate
+        }"
+        [control]="registerForm.get('dob')"
+      ></cx-form-errors>
     </label>
 
     <label>
@@ -174,7 +188,14 @@
         }}"
       >
       </ng-select>
+
       <cx-form-errors
+        *cxFeature="'formErrorsDescriptiveMessages'"
+        [translationParams]="{
+          label:
+            'userRegistrationTranslations.fields.qualification.errormsg'
+            | cxTranslate
+        }"
         [control]="registerForm.get('qualification')"
       ></cx-form-errors>
     </label>
