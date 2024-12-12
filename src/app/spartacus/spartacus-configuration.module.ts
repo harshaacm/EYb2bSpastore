@@ -16,6 +16,7 @@ import {
   mediaConfig,
 } from '@spartacus/storefront';
 import { EylayoutConfig } from '../config/layout-config';
+import { environment } from '../../environment/environment';
 @NgModule({
   declarations: [],
   imports: [],
@@ -26,7 +27,7 @@ import { EylayoutConfig } from '../config/layout-config';
     provideConfig(<OccConfig>{
       backend: {
         occ: {
-          baseUrl: 'https://localhost:9002/',
+          baseUrl: environment.API_BASE_URL,
         },
       },
     }),
@@ -36,7 +37,7 @@ import { EylayoutConfig } from '../config/layout-config';
     provideConfig(<I18nConfig>{
       i18n: {
         backend: {
-          loadPath: 'assets/i18n-assets/{{lng}}/{{ns}}.json',
+          loadPath: 'assets/translations/{{lng}}/{{ns}}.json',
         },
         chunks: translationChunksConfig,
         fallbackLang: 'en',
