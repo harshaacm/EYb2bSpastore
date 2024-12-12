@@ -8,7 +8,7 @@ import {
   UrlModule,
   provideDefaultConfig,
 } from '@spartacus/core';
-import { SearchBoxComponent } from './search-box.component';
+import { SearchBoxComponent } from './ey-search-box.component';
 import { IconModule, MediaModule, OutletModule } from '@spartacus/storefront';
 import { HighlightPipe } from './highlight.pipe';
 

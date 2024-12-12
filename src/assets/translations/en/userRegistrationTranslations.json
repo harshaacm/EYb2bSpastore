@@ -1,0 +1,69 @@
+{
+  "userRegistrationTranslations": {
+    "fields": {
+      "titleCode": {
+        "label": "Title",
+        "placeholder": "title"
+      },
+      "firstName": {
+        "label": "First name",
+        "placeholder": "First name"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "Last name"
+      },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select"
+      },
+      "dob": {
+        "label": "DOB"
+      },
+      "age": {
+        "label": "Age",
+        "placeholder": "Age will be prepopulated here"
+      },
+      "qualification": {
+        "label": "Qualification",
+        "placeholder": "Select Qualifiaction"
+      },
+      "companyName": {
+        "label": "Company name",
+        "placeholder": "Company name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter email addresss"
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Select Country"
+      },
+      "addressLine": {
+        "label": "Address line",
+        "placeholder": "Enter address"
+      },
+      "secondAddressLine": {
+        "label": "Address line 2",
+        "placeholder": "Enter address"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter city"
+      },
+      "postalCode": {
+        "label": "Zip/Postal code",
+        "placeholder": "Enter zipcode"
+      },
+      "phoneNumber": {
+        "label": "Phone number",
+        "placeholder": "Enter Phone number"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Enter message"
+      }
+    }
+  }
+}

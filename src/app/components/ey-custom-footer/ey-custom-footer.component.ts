@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-custom-footer',
-  templateUrl: './custom-footer.component.html',
-  styleUrl: './custom-footer.component.scss',
+  templateUrl: './ey-custom-footer.component.html',
+  styleUrl: './ey-custom-footer.component.scss',
 })
 export class CustomFooterComponent implements OnInit {
   year!: number;

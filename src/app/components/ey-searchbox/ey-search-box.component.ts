@@ -20,13 +20,13 @@ import {
 } from '@spartacus/core';
 import { Observable, Subscription, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { SearchBoxComponentService } from './search-box-component.service';
-import { SearchBoxFeatures } from './search-box-features.model';
+import { SearchBoxComponentService } from './ey-search-box-component.service';
+import { SearchBoxFeatures } from './ey-search-box-features.model';
 import {
   SearchBoxProductSelectedEvent,
   SearchBoxSuggestionSelectedEvent,
-} from './search-box.events';
-import { SearchBoxConfig, SearchResults } from './search-box.model';
+} from './ey-search-box.events';
+import { SearchBoxConfig, SearchResults } from './ey-search-box.model';
 import {
   BREAKPOINT,
   BreakpointService,
@@ -49,8 +49,8 @@ const SEARCHBOX_IS_ACTIVE = 'searchbox-is-active';
 
 @Component({
   selector: 'cx-searchbox',
-  templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.scss'],
+  templateUrl: './ey-search-box.component.html',
+  styleUrls: ['./ey-search-box.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -189,7 +189,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
    * Opens the type-ahead searchBox
    */
   open(): void {
-    // TODO: (CXSPA-6929) - Remove feature flag next major release
     if (this.a11ySearchBoxMobileFocusEnabled) {
       if (!this.searchBoxActive) {
         this.searchBoxComponentService.toggleBodyClass(

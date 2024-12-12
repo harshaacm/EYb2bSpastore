@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginFormComponent } from './login-form.component';
+import { LoginFormComponent } from './ey-login-form.component';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -8,10 +8,9 @@ describe('LoginFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginFormComponent]
-    })
-    .compileComponents();
-    
+      declarations: [LoginFormComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

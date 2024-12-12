@@ -15,8 +15,8 @@ import {
   PasswordVisibilityToggleModule,
   SpinnerModule,
 } from '@spartacus/storefront';
-import { LoginFormComponentService } from './login-form.component.service';
-import { LoginFormComponent } from './login-form.component';
+import { LoginFormComponentService } from './ey-login-form.component.service';
+import { LoginFormComponent } from './ey-login-form.component';
 import { RegisterComponent } from '@spartacus/user/profile/components';
 
 @NgModule({

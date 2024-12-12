@@ -13,8 +13,8 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import {
   SearchBoxProductSelectedEvent,
   SearchBoxSuggestionSelectedEvent,
-} from './search-box.events';
-import { SearchBoxConfig, SearchResults } from './search-box.model';
+} from './ey-search-box.events';
+import { SearchBoxConfig, SearchResults } from './ey-search-box.model';
 
 const HAS_SEARCH_RESULT_CLASS = 'has-searchbox-results';
 
