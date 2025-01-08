@@ -11,7 +11,6 @@ import {
   withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-
 import { CustomComponentsModule } from './components/custom-components.module';
 
 @NgModule({

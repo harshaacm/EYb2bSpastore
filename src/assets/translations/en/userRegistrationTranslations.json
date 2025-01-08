@@ -3,7 +3,7 @@
     "fields": {
       "titleCode": {
         "label": "Title",
-        "placeholder": "title"
+        "placeholder": "Title"
       },
       "firstName": {
         "label": "First name",
@@ -19,8 +19,8 @@
         "errormsg": "Gender"
       },
       "dob": {
-        "label": "DOB",
-        "errormsg": "DOB"
+        "label": "Date Of Birth",
+        "errormsg": "Date Of Birth"
       },
       "age": {
         "label": "Age",

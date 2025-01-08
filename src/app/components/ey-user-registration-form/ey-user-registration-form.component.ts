@@ -19,10 +19,12 @@ import {
 import { Title } from '@spartacus/user/profile/root';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { EyUserRegistrationFormService } from './ey-user-registration-form.componentservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cx-user-registration-form',
   templateUrl: './Ey-user-registration-form.component.html',
+  styleUrls: ['./ey-user-registration-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EyUserRegistrationFormComponent implements OnDestroy {
@@ -61,7 +63,8 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
 
   constructor(
     protected EyuserRegistrationFormService: EyUserRegistrationFormService,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    private router: Router
   ) {
     this.registerForm = this.createForm();
     this.setMaxDateForDOB();
@@ -165,6 +168,10 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
           this.registerForm
         ).subscribe({
           complete: () => this.isLoading$.next(false),
+          next: () => {
+            this.router.navigate(['/ey-registration-success']);
+            console.log('test');
+          },
           error: () => {
             this.isLoading$.next(false);
             this.globalMessageService?.add(

@@ -17,9 +17,10 @@ import {
 } from '@spartacus/storefront';
 import { EylayoutConfig } from '../config/layout-config';
 import { environment } from '../../environment/environment';
+import { EyRoutingModule } from '../components/ey-routing/ey-routing.module';
 @NgModule({
   declarations: [],
-  imports: [],
+  imports: [EyRoutingModule],
   providers: [
     provideConfig(EylayoutConfig),
     provideConfig(mediaConfig),
