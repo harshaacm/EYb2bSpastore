@@ -4,7 +4,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule, PageTitleComponent } from '@spartacus/storefront';
 import { AppComponent } from './app.component';
 import { SpartacusModule } from './spartacus/spartacus.module';
-
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   provideHttpClient,

@@ -30,7 +30,6 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 })
 export class EyUserRegistrationFormService {
   private _form: FormGroup = this.buildForm();
-  //router: any;
   /*
    * Initializes form structure for registration.
    */

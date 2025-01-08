@@ -14,10 +14,10 @@ import {
   SpinnerModule,
   PasswordVisibilityToggleModule,
 } from '@spartacus/storefront';
-import { EySuccessPageComponent } from './ey-success-page.component';
+import { EyCustomFooterComponent } from './ey-custom-footer.component';
 
 @NgModule({
-  declarations: [EySuccessPageComponent],
+  declarations: [EyCustomFooterComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -29,12 +29,12 @@ import { EySuccessPageComponent } from './ey-success-page.component';
     FeaturesConfigModule,
     ConfigModule.withConfig({
       cmsComponents: {
-        EySuccessPageComponent: {
-          component: EySuccessPageComponent,
+        FooterNavigationComponent: {
+          component: EyCustomFooterComponent,
           guards: [NotAuthGuard],
         },
       },
     } as CmsConfig),
   ],
 })
-export class EySuccessPageModule {}
+export class EyCustomfooterModule {}

@@ -14,10 +14,10 @@ import {
   SpinnerModule,
   PasswordVisibilityToggleModule,
 } from '@spartacus/storefront';
-import { EySuccessPageComponent } from './ey-success-page.component';
+import { EyCarouselComponent } from './ey-carousel.component';
 
 @NgModule({
-  declarations: [EySuccessPageComponent],
+  declarations: [EyCarouselComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -29,12 +29,11 @@ import { EySuccessPageComponent } from './ey-success-page.component';
     FeaturesConfigModule,
     ConfigModule.withConfig({
       cmsComponents: {
-        EySuccessPageComponent: {
-          component: EySuccessPageComponent,
-          guards: [NotAuthGuard],
+        cmsitem_00000001: {
+          component: EyCarouselComponent,
         },
       },
     } as CmsConfig),
   ],
 })
-export class EySuccessPageModule {}
+export class EyCarouselModule {}
