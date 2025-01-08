@@ -1,0 +1,22 @@
+.success-page {
+  text-align: center;
+  margin-top: 50px;
+
+  h1 {
+    color: green;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  .btn {
+    margin-top: 20px;
+    width: 20%;
+    color: #fff;
+    background-color: #747480;
+    &:hover {
+      background-color: #888897;
+    }
+  }
+}

@@ -2,16 +2,18 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBoxModule } from './ey-searchbox/ey-search-box.module';
 import { LoginFormModule } from './ey-login-form/ey-login-form.module';
-import { EyCustomFooterComponent } from './ey-custom-footer/ey-custom-footer.component';
-import { EyCarouselComponent } from './ey-carousel/ey-carousel.component';
 import { CmsConfig, ConfigModule } from '@spartacus/core';
 import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-registration-form.module';
+import { EySuccessPageModule } from './ey-success-page/ey-success-page.module';
+import { EyCustomfooterModule } from './ey-custom-footer/ey-custom-footer.module';
+import { EyCarouselModule } from './ey-carousel/ey-carousel.module';
 
 @NgModule({
-  declarations: [EyCustomFooterComponent, EyCarouselComponent],
+  declarations: [],
   imports: [
     CommonModule,
     SearchBoxModule,
+    EySuccessPageModule,
     LoginFormModule,
     UserRegistrationFormModule,
     ConfigModule.withConfig({
@@ -25,20 +27,15 @@ import { UserRegistrationFormModule } from './ey-user-registration-form/ey-user-
         CMSParagraphComponent: {
           component: {},
         },
-        FooterNavigationComponent: {
-          component: EyCustomFooterComponent,
-        },
-        cmsitem_00000001: {
-          component: EyCarouselComponent,
-        },
       },
     } as CmsConfig),
   ],
   exports: [
     SearchBoxModule,
     LoginFormModule,
-    EyCustomFooterComponent,
-    EyCarouselComponent,
+    EyCustomfooterModule,
+    EySuccessPageModule,
+    EyCarouselModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
