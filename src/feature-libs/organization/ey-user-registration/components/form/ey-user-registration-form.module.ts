@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -17,7 +17,7 @@ import {
   SpinnerModule,
 } from '@spartacus/storefront';
 import { EyUserRegistrationFormComponent } from './ey-user-registration-form.component';
-import { EyUserRegistrationFormService } from './ey-user-registration-form.component.service';
+import { EyUserRegistrationFormService } from './user-registration-form.service';
 
 @NgModule({
   imports: [
@@ -29,7 +29,6 @@ import { EyUserRegistrationFormService } from './ey-user-registration-form.compo
     SpinnerModule,
     FormErrorsModule,
     NgSelectModule,
-
     NgSelectA11yModule,
     ConfigModule.withConfig(<CmsConfig>{
       cmsComponents: {
@@ -45,4 +44,4 @@ import { EyUserRegistrationFormService } from './ey-user-registration-form.compo
   exports: [EyUserRegistrationFormComponent],
   providers: [EyUserRegistrationFormService],
 })
-export class UserRegistrationFormModule {}
+export class EyUserRegistrationFormModule {}

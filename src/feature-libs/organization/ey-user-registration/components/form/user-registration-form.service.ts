@@ -22,14 +22,15 @@ import {
 } from '@spartacus/organization/user-registration/root';
 import { CustomFormValidators } from '@spartacus/storefront';
 import { Title, UserRegisterFacade } from '@spartacus/user/profile/root';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { filter, switchMap, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EyUserRegistrationFormService {
   private _form: FormGroup = this.buildForm();
+
   /*
    * Initializes form structure for registration.
    */
@@ -171,21 +172,22 @@ export class EyUserRegistrationFormService {
    * Registers new organization user.
    */
   registerUser(form: FormGroup): Observable<OrganizationUserRegistration> {
-    const userRegistrationData = {
-      titleCode: form.get('titleCode')?.value,
-      firstName: form.get('firstName')?.value,
-      lastName: form.get('lastName')?.value,
-      email: form.get('email')?.value,
-      message: '',
-    };
-
-    return this.organizationUserRegistrationFacade
-      .registerUser(userRegistrationData)
-      .pipe(
-        catchError((error) => {
-          console.error('Registration failed', error);
-          return throwError(error);
+    return this.buildMessageContent(form).pipe(
+      take(1),
+      switchMap((message: string) =>
+        this.organizationUserRegistrationFacade.registerUser({
+          titleCode: form.get('titleCode')?.value,
+          firstName: form.get('firstName')?.value,
+          lastName: form.get('lastName')?.value,
+          email: form.get('email')?.value,
+          message: message,
         })
-      );
+      ),
+      tap(() => {
+        this.displayGlobalMessage();
+        this.redirectToLogin();
+        form.reset();
+      })
+    );
   }
 }

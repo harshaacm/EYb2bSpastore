@@ -4,12 +4,7 @@ import {
   inject,
   OnDestroy,
 } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   Country,
   GlobalMessageService,
@@ -18,12 +13,12 @@ import {
 } from '@spartacus/core';
 import { Title } from '@spartacus/user/profile/root';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { EyUserRegistrationFormService } from './ey-user-registration-form.component.service';
+import { EyUserRegistrationFormService } from './user-registration-form.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'cx-user-registration-form',
-  templateUrl: './Ey-user-registration-form.component.html',
+  templateUrl: './ey-user-registration-form.component.html',
   styleUrls: ['./ey-user-registration-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
