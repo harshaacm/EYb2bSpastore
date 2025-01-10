@@ -30,4 +30,4 @@ import {
     }),
   ],
 })
-export class EyOrganizationUserRegistrationFeatureModule {}
+export class OrganizationUserRegistrationFeatureModule {}

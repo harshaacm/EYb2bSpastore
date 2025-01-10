@@ -83,7 +83,7 @@ import { ProductFutureStockFeatureModule } from './features/product/product-futu
 import { ProductVariantsFeatureModule } from './features/product/product-variants-feature.module';
 import { ProductImageZoomFeatureModule } from './features/product/product-image-zoom-feature.module';
 import { QuoteFeatureModule } from './features/quote/quote-feature.module';
-import { EyOrganizationUserRegistrationFeatureModule } from './features/registration-feature.module';
+import { OrganizationUserRegistrationFeatureModule } from './features/registration-feature.module';
 
 @NgModule({
   declarations: [],
@@ -148,7 +148,7 @@ import { EyOrganizationUserRegistrationFeatureModule } from './features/registra
     PdfinvoicesModuleFeatureModule,
     RequestedDeliveryDateModuleFeatureModule,
     CustomerTicketingFeatureModule,
-    EyOrganizationUserRegistrationFeatureModule,
+    OrganizationUserRegistrationFeatureModule,
     OrganizationAdministrationFeatureModule,
     OrganizationAccountSummaryFeatureModule,
     OrganizationUnitOrderFeatureModule,
