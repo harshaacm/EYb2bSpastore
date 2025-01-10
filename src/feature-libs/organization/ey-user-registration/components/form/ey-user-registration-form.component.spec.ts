@@ -22,7 +22,7 @@ import {
 import { MockFeatureDirective } from '../../../../../projects/storefrontlib/shared/test/mock-feature-directive';
 import { Observable, of, throwError } from 'rxjs';
 import { EyUserRegistrationFormComponent } from './ey-user-registration-form.component';
-import { EyUserRegistrationFormService } from './user-registration-form.service';
+import { EyUserRegistrationFormService } from './ey-user-registration-form.service';
 
 const mockOrganizationUser: OrganizationUserRegistrationForm = {
   firstName: 'John',

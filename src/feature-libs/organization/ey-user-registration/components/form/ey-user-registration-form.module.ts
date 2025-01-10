@@ -17,7 +17,7 @@ import {
   SpinnerModule,
 } from '@spartacus/storefront';
 import { EyUserRegistrationFormComponent } from './ey-user-registration-form.component';
-import { EyUserRegistrationFormService } from './user-registration-form.service';
+import { EyUserRegistrationFormService } from './ey-user-registration-form.service';
 
 @NgModule({
   imports: [

@@ -7,11 +7,9 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="submit()">
     <label>
-      <span class="label-content"
-        >{{
-          "userRegistrationForm.fields.titleCode.label" | cxTranslate
-        }}*</span
-      >
+      <span class="label-content">{{
+        "userRegistrationForm.fields.titleCode.label" | cxTranslate
+      }}</span>
       <ng-select
         id="title-code-select"
         formControlName="titleCode"
@@ -110,7 +108,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label: 'userRegistrationForm.fields.gender.errormsg' | cxTranslate
+          label: 'userRegistrationForm.fields.gender.label' | cxTranslate
         }"
         [control]="registerForm.get('gender')"
       ></cx-form-errors>
@@ -132,7 +130,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label: 'userRegistrationForm.fields.dob.errormsg' | cxTranslate
+          label: 'userRegistrationForm.fields.dob.label' | cxTranslate
         }"
         [control]="registerForm.get('dob')"
       ></cx-form-errors>
@@ -177,8 +175,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label:
-            'userRegistrationForm.fields.qualification.errormsg' | cxTranslate
+          label: 'userRegistrationForm.fields.qualification.label' | cxTranslate
         }"
         [control]="registerForm.get('qualification')"
       ></cx-form-errors>

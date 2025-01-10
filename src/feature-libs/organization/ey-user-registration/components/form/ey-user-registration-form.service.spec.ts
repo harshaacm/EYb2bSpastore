@@ -12,7 +12,7 @@ import {
 } from '@spartacus/organization/user-registration/root';
 import { UserRegisterFacade } from '@spartacus/user/profile/root';
 import { of } from 'rxjs';
-import { EyUserRegistrationFormService } from './user-registration-form.service';
+import { EyUserRegistrationFormService } from './ey-user-registration-form.service';
 import createSpy = jasmine.createSpy;
 
 class MockGlobalMessageService implements Partial<GlobalMessageService> {

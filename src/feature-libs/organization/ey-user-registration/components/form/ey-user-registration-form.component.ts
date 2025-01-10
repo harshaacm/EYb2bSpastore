@@ -13,7 +13,7 @@ import {
 } from '@spartacus/core';
 import { Title } from '@spartacus/user/profile/root';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { EyUserRegistrationFormService } from './user-registration-form.service';
+import { EyUserRegistrationFormService } from './ey-user-registration-form.service';
 import { Router } from '@angular/router';
 
 @Component({

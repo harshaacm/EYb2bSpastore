@@ -2,7 +2,7 @@
   "userRegistrationForm": {
     "fields": {
       "titleCode": {
-        "label": "Title",
+        "label": "Title(Optional)",
         "placeholder": "Title"
       },
       "firstName": {
@@ -15,12 +15,10 @@
       },
       "gender": {
         "label": "Gender",
-        "placeholder": "Select",
-        "errormsg": "Gender"
+        "placeholder": "Select"
       },
       "dob": {
-        "label": "Date Of Birth",
-        "errormsg": "Date Of Birth"
+        "label": "Date Of Birth"
       },
       "age": {
         "label": "Age",
@@ -28,8 +26,7 @@
       },
       "qualification": {
         "label": "Qualification",
-        "placeholder": "Select Qualification",
-        "errormsg": "Qualification"
+        "placeholder": "Select Qualification"
       },
       "companyName": {
         "label": "Company name",

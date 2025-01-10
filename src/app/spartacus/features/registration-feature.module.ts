@@ -18,7 +18,7 @@ import {
           module: () =>
             import(
               './organization/organization-user-registration-wrapper.module'
-            ).then((m) => m.EyOrganizationUserRegistrationWrapperModule),
+            ).then((m) => m.OrganizationUserRegistrationWrapperModule),
         },
       },
     }),

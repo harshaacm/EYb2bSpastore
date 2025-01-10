@@ -18,7 +18,7 @@ import {
         [ORGANIZATION_USER_REGISTRATION_FEATURE]: {
           module: () =>
             import('./organization-user-registration-wrapper.module').then(
-              (m) => m.EyOrganizationUserRegistrationWrapperModule
+              (m) => m.OrganizationUserRegistrationWrapperModule
             ),
         },
       },
@@ -31,4 +31,4 @@ import {
     }),
   ],
 })
-export class EyOrganizationUserRegistrationFeatureModule {}
+export class OrganizationUserRegistrationFeatureModule {}
