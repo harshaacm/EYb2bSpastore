@@ -7,11 +7,9 @@
 
   <form [formGroup]="registerForm" (ngSubmit)="submit()">
     <label>
-      <span class="label-content"
-        >{{
-          "userRegistrationTranslations.fields.titleCode.label" | cxTranslate
-        }}*</span
-      >
+      <span class="label-content">{{
+        "userRegistrationForm.fields.titleCode.label" | cxTranslate
+      }}</span>
       <ng-select
         id="title-code-select"
         formControlName="titleCode"
@@ -21,8 +19,7 @@
         bindLabel="name"
         bindValue="code"
         placeholder="{{
-          'userRegistrationTranslations.fields.titleCode.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.titleCode.placeholder' | cxTranslate
         }}"
         [cxNgSelectA11y]="{
           ariaLabel: 'userRegistrationForm.fields.titleCode.label' | cxTranslate
@@ -34,7 +31,7 @@
     <label>
       <span class="label-content required"
         >{{
-          "userRegistrationTranslations.fields.firstName.label" | cxTranslate
+          "userRegistrationForm.fields.firstName.label" | cxTranslate
         }}*</span
       >
       <input
@@ -43,8 +40,7 @@
         type="text"
         name="firstname"
         placeholder="{{
-          'userRegistrationTranslations.fields.firstName.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.firstName.placeholder' | cxTranslate
         }}"
         formControlName="firstName"
       />
@@ -64,9 +60,7 @@
 
     <label>
       <span class="label-content required"
-        >{{
-          "userRegistrationTranslations.fields.lastName.label" | cxTranslate
-        }}*</span
+        >{{ "userRegistrationForm.fields.lastName.label" | cxTranslate }}*</span
       >
       <input
         required="true"
@@ -74,8 +68,7 @@
         type="text"
         name="lastname"
         placeholder="{{
-          'userRegistrationTranslations.fields.lastName.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.lastName.placeholder' | cxTranslate
         }}"
         formControlName="lastName"
       />
@@ -95,10 +88,8 @@
     </label>
 
     <label>
-      <span class="label-content required"
-        >{{
-          "userRegistrationTranslations.fields.gender.label" | cxTranslate
-        }}*</span
+      <span class="label-content"
+        >{{ "userRegistrationForm.fields.gender.label" | cxTranslate }}*</span
       >
       <ng-select
         id="gender-select"
@@ -110,15 +101,14 @@
         bindLabel="name"
         bindValue="code"
         placeholder="{{
-          'userRegistrationTranslations.fields.gender.placeholder' | cxTranslate
+          'userRegistrationForm.fields.gender.placeholder' | cxTranslate
         }}"
       >
       </ng-select>
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label:
-            'userRegistrationTranslations.fields.gender.errormsg' | cxTranslate
+          label: 'userRegistrationForm.fields.gender.label' | cxTranslate
         }"
         [control]="registerForm.get('gender')"
       ></cx-form-errors>
@@ -126,9 +116,7 @@
 
     <label>
       <span class="label-content required"
-        >{{
-          "userRegistrationTranslations.fields.dob.label" | cxTranslate
-        }}*</span
+        >{{ "userRegistrationForm.fields.dob.label" | cxTranslate }}*</span
       >
       <input
         required="true"
@@ -142,8 +130,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label:
-            'userRegistrationTranslations.fields.dob.errormsg' | cxTranslate
+          label: 'userRegistrationForm.fields.dob.label' | cxTranslate
         }"
         [control]="registerForm.get('dob')"
       ></cx-form-errors>
@@ -151,7 +138,7 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.age.label" | cxTranslate
+        "userRegistrationForm.fields.age.label" | cxTranslate
       }}</span>
       <input
         type="number"
@@ -159,7 +146,7 @@
         formControlName="age"
         [readonly]="true"
         placeholder="{{
-          'userRegistrationTranslations.fields.age.placeholder' | cxTranslate
+          'userRegistrationForm.fields.age.placeholder' | cxTranslate
         }}"
       />
     </label>
@@ -167,8 +154,7 @@
     <label>
       <span class="label-content required"
         >{{
-          "userRegistrationTranslations.fields.qualification.label"
-            | cxTranslate
+          "userRegistrationForm.fields.qualification.label" | cxTranslate
         }}*</span
       >
       <ng-select
@@ -181,8 +167,7 @@
         bindLabel="name"
         bindValue="code"
         placeholder="{{
-          'userRegistrationTranslations.fields.qualification.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.qualification.placeholder' | cxTranslate
         }}"
       >
       </ng-select>
@@ -190,9 +175,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label:
-            'userRegistrationTranslations.fields.qualification.errormsg'
-            | cxTranslate
+          label: 'userRegistrationForm.fields.qualification.label' | cxTranslate
         }"
         [control]="registerForm.get('qualification')"
       ></cx-form-errors>
@@ -201,7 +184,7 @@
     <label>
       <span class="label-content required"
         >{{
-          "userRegistrationTranslations.fields.companyName.label" | cxTranslate
+          "userRegistrationForm.fields.companyName.label" | cxTranslate
         }}*</span
       >
       <input
@@ -210,8 +193,7 @@
         type="text"
         name="companyName"
         placeholder="{{
-          'userRegistrationTranslations.fields.companyName.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.companyName.placeholder' | cxTranslate
         }}"
         formControlName="companyName"
       />
@@ -230,9 +212,7 @@
 
     <label>
       <span class="label-content required"
-        >{{
-          "userRegistrationTranslations.fields.email.label" | cxTranslate
-        }}*</span
+        >{{ "userRegistrationForm.fields.email.label" | cxTranslate }}*</span
       >
       <input
         required="true"
@@ -240,7 +220,7 @@
         type="email"
         name="email"
         placeholder="{{
-          'userRegistrationTranslations.fields.email.placeholder' | cxTranslate
+          'userRegistrationForm.fields.email.placeholder' | cxTranslate
         }}"
         formControlName="email"
       />
@@ -265,7 +245,7 @@
     >
       <label *ngIf="countries.length !== 0">
         <span class="label-content">{{
-          "userRegistrationTranslations.fields.country.label" | cxTranslate
+          "userRegistrationForm.fields.country.label" | cxTranslate
         }}</span>
         <ng-select
           class="country-select"
@@ -277,12 +257,10 @@
           bindLabel="name"
           bindValue="isocode"
           placeholder="{{
-            'userRegistrationTranslations.fields.country.placeholder'
-              | cxTranslate
+            'userRegistrationForm.fields.country.placeholder' | cxTranslate
           }}"
           [cxNgSelectA11y]="{
-            ariaLabel:
-              'userRegistrationTranslations.fields.country.label' | cxTranslate
+            ariaLabel: 'userRegistrationForm.fields.country.label' | cxTranslate
           }"
         >
         </ng-select>
@@ -304,14 +282,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.addressLine.label" | cxTranslate
+        "userRegistrationForm.fields.addressLine.label" | cxTranslate
       }}</span>
       <input
         type="text"
         class="form-control"
         placeholder="{{
-          'userRegistrationTranslations.fields.addressLine.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.addressLine.placeholder' | cxTranslate
         }}"
         formControlName="line1"
       />
@@ -332,14 +309,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.secondAddressLine.label"
-          | cxTranslate
+        "userRegistrationForm.fields.secondAddressLine.label" | cxTranslate
       }}</span>
       <input
         type="text"
         class="form-control"
         placeholder="{{
-          'userRegistrationTranslations.fields.secondAddressLine.placeholder'
+          'userRegistrationForm.fields.secondAddressLine.placeholder'
             | cxTranslate
         }}"
         formControlName="line2"
@@ -349,13 +325,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.city.label" | cxTranslate
+        "userRegistrationForm.fields.city.label" | cxTranslate
       }}</span>
       <input
         type="text"
         class="form-control"
         placeholder="{{
-          'userRegistrationTranslations.fields.city.label' | cxTranslate
+          'userRegistrationForm.fields.city.label' | cxTranslate
         }}"
         formControlName="town"
       />
@@ -364,14 +340,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.postalCode.label" | cxTranslate
+        "userRegistrationForm.fields.postalCode.label" | cxTranslate
       }}</span>
       <input
         type="text"
         class="form-control"
         placeholder="{{
-          'userRegistrationTranslations.fields.postalCode.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.postalCode.placeholder' | cxTranslate
         }}"
         formControlName="postalCode"
       />
@@ -379,8 +354,7 @@
       <cx-form-errors
         *cxFeature="'formErrorsDescriptiveMessages'"
         [translationParams]="{
-          label:
-            'userRegistrationTranslations.fields.postalCode.label' | cxTranslate
+          label: 'userRegistrationForm.fields.postalCode.label' | cxTranslate
         }"
         [control]="registerForm.get('postalCode')"
       ></cx-form-errors>
@@ -431,14 +405,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.phoneNumber.label" | cxTranslate
+        "userRegistrationForm.fields.phoneNumber.label" | cxTranslate
       }}</span>
       <input
         type="tel"
         class="form-control"
         placeholder="{{
-          'userRegistrationTranslations.fields.phoneNumber.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.phoneNumber.placeholder' | cxTranslate
         }}"
         formControlName="phoneNumber"
       />
@@ -459,14 +432,13 @@
 
     <label>
       <span class="label-content">{{
-        "userRegistrationTranslations.fields.message.label" | cxTranslate
+        "userRegistrationForm.fields.message.label" | cxTranslate
       }}</span>
       <textarea
         class="form-control"
         formControlName="message"
         placeholder="{{
-          'userRegistrationTranslations.fields.message.placeholder'
-            | cxTranslate
+          'userRegistrationForm.fields.message.placeholder' | cxTranslate
         }}"
         rows="5"
       ></textarea>

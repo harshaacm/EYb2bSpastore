@@ -22,7 +22,7 @@ import {
 } from '@spartacus/organization/user-registration/root';
 import { CustomFormValidators } from '@spartacus/storefront';
 import { Title, UserRegisterFacade } from '@spartacus/user/profile/root';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -30,6 +30,7 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 })
 export class EyUserRegistrationFormService {
   private _form: FormGroup = this.buildForm();
+
   /*
    * Initializes form structure for registration.
    */
@@ -146,7 +147,7 @@ export class EyUserRegistrationFormService {
   /**
    * Displays confirmation global message.
    */
-  protected displayGlobalMessage(): void {
+  protected displayGlobalMessage(error: any): void {
     return this.globalMessageService.add(
       { key: 'userRegistrationForm.successFormSubmitMessage' },
       GlobalMessageType.MSG_TYPE_CONFIRMATION
@@ -171,21 +172,35 @@ export class EyUserRegistrationFormService {
    * Registers new organization user.
    */
   registerUser(form: FormGroup): Observable<OrganizationUserRegistration> {
-    const userRegistrationData = {
-      titleCode: form.get('titleCode')?.value,
-      firstName: form.get('firstName')?.value,
-      lastName: form.get('lastName')?.value,
-      email: form.get('email')?.value,
-      message: '',
-    };
-
-    return this.organizationUserRegistrationFacade
-      .registerUser(userRegistrationData)
-      .pipe(
-        catchError((error) => {
-          console.error('Registration failed', error);
-          return throwError(error);
+    return this.buildMessageContent(form).pipe(
+      take(1),
+      switchMap((message: string) =>
+        this.organizationUserRegistrationFacade.registerUser({
+          titleCode: form.get('titleCode')?.value,
+          firstName: form.get('firstName')?.value,
+          lastName: form.get('lastName')?.value,
+          email: form.get('email')?.value,
+          gender: form.get('gender')?.value,
+          dob: form.get('dob')?.value,
+          age: form.get('age')?.value,
+          qualification: form.get('qualification')?.value,
+          companyName: form.get('companyName')?.value,
+          isocode: form.get('isocode')?.value,
+          line1: form.get('line1')?.value,
+          line2: form.get('line2')?.value,
+          town: form.get('town')?.value,
+          postalCode: form.get('postalCode')?.value,
+          phoneNumber: form.get('phoneNumber')?.value,
+          message: message,
         })
-      );
+      ),
+      tap(() => {
+        form.reset();
+      }),
+      catchError((error) => {
+        this.displayGlobalMessage(error);
+        throw error;
+      })
+    );
   }
 }
