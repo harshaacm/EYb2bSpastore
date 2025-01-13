@@ -23,7 +23,7 @@ import {
 import { CustomFormValidators } from '@spartacus/storefront';
 import { Title, UserRegisterFacade } from '@spartacus/user/profile/root';
 import { Observable, of } from 'rxjs';
-import { filter, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -147,7 +147,7 @@ export class EyUserRegistrationFormService {
   /**
    * Displays confirmation global message.
    */
-  protected displayGlobalMessage(): void {
+  protected displayGlobalMessage(error: any): void {
     return this.globalMessageService.add(
       { key: 'userRegistrationForm.successFormSubmitMessage' },
       GlobalMessageType.MSG_TYPE_CONFIRMATION
@@ -195,9 +195,11 @@ export class EyUserRegistrationFormService {
         })
       ),
       tap(() => {
-        this.displayGlobalMessage();
-        this.redirectToLogin();
         form.reset();
+      }),
+      catchError((error) => {
+        this.displayGlobalMessage(error);
+        throw error;
       })
     );
   }
