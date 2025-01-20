@@ -3,20 +3,24 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
+  AuthService,
   CmsConfig,
   ConfigModule,
   FeaturesConfigModule,
+  GlobalMessageService,
   I18nModule,
   NotAuthGuard,
+  provideDefaultConfig,
   UrlModule,
+  WindowRef,
 } from '@spartacus/core';
 import {
   FormErrorsModule,
   PasswordVisibilityToggleModule,
   SpinnerModule,
 } from '@spartacus/storefront';
-import { LoginFormComponentService } from './login-form.component.service';
-import { LoginFormComponent } from './login-form.component';
+import { LoginFormComponentService } from '@spartacus/user/account/components';
+import { EyLoginFormComponent } from './ey-login-form.component';
 import { RegisterComponent } from '@spartacus/user/profile/components';
 
 @NgModule({
@@ -34,13 +38,20 @@ import { RegisterComponent } from '@spartacus/user/profile/components';
     ConfigModule.withConfig({
       cmsComponents: {
         ReturningCustomerLoginComponent: {
-          component: LoginFormComponent,
+          component: EyLoginFormComponent,
           guards: [NotAuthGuard],
+          providers: [
+            {
+              provide: LoginFormComponentService,
+              useClass: LoginFormComponentService,
+              deps: [AuthService, GlobalMessageService, WindowRef],
+            },
+          ],
         },
       },
     } as CmsConfig),
   ],
-  providers: [LoginFormComponentService],
-  declarations: [LoginFormComponent],
+  providers: [],
+  declarations: [EyLoginFormComponent],
 })
 export class LoginFormModule {}

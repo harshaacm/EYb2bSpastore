@@ -6,17 +6,19 @@ import {
 } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LoginFormComponentService } from './login-form.component.service';
+import { LoginFormComponentService } from '@spartacus/user/account/components';
 
 @Component({
   selector: 'cx-login-form',
-  templateUrl: './login-form.component.html',
+  templateUrl: './ey-login-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./login-form.component.scss'],
+  styleUrls: ['./ey-login-form.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LoginFormComponent {
-  constructor(protected service: LoginFormComponentService) {}
+export class EyLoginFormComponent {
+  constructor(protected service: LoginFormComponentService) {
+    console.log('V');
+  }
 
   form: UntypedFormGroup = this.service.form;
   isUpdating$: Observable<boolean> = this.service.isUpdating$;
