@@ -1,19 +1,15 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SearchBoxModule } from './ey-searchbox/ey-search-box.module';
-import { LoginFormModule } from './ey-login-form/ey-login-form.module';
 import { CmsConfig, ConfigModule } from '@spartacus/core';
-import { EySuccessPageModule } from './ey-success-page/ey-success-page.module';
 import { EyCustomfooterModule } from './ey-custom-footer/ey-custom-footer.module';
 import { EyCarouselModule } from './ey-carousel/ey-carousel.module';
+import { SearchBoxModule } from './ey-searchbox/ey-search-box.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     SearchBoxModule,
-    EySuccessPageModule,
-    LoginFormModule,
     ConfigModule.withConfig({
       cmsComponents: {
         AnonymousConsentOpenDialogComponent: {
@@ -28,13 +24,7 @@ import { EyCarouselModule } from './ey-carousel/ey-carousel.module';
       },
     } as CmsConfig),
   ],
-  exports: [
-    SearchBoxModule,
-    LoginFormModule,
-    EyCustomfooterModule,
-    EySuccessPageModule,
-    EyCarouselModule,
-  ],
+  exports: [SearchBoxModule, EyCustomfooterModule, EyCarouselModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomComponentsModule {}

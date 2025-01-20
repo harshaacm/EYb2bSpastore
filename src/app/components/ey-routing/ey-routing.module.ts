@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EySuccessPageComponent } from '../ey-success-page/ey-success-page.component';
+import { EySuccessPageComponent } from '../../../feature-libs/organization/ey-user-registration/components/form/ey-success-page/ey-success-page.component';
 
 const routes: Routes = [
   {

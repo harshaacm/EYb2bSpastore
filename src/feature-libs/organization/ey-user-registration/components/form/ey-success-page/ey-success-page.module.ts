@@ -17,7 +17,6 @@ import {
 import { EySuccessPageComponent } from './ey-success-page.component';
 
 @NgModule({
-  declarations: [EySuccessPageComponent],
   imports: [
     CommonModule,
     RouterModule,
