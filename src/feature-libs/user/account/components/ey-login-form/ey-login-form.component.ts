@@ -16,9 +16,7 @@ import { LoginFormComponentService } from '@spartacus/user/account/components';
   encapsulation: ViewEncapsulation.None,
 })
 export class EyLoginFormComponent {
-  constructor(protected service: LoginFormComponentService) {
-    console.log('V');
-  }
+  constructor(protected service: LoginFormComponentService) {}
 
   form: UntypedFormGroup = this.service.form;
   isUpdating$: Observable<boolean> = this.service.isUpdating$;
