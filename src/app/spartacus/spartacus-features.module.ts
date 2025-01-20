@@ -84,6 +84,7 @@ import { ProductVariantsFeatureModule } from './features/product/product-variant
 import { ProductImageZoomFeatureModule } from './features/product/product-image-zoom-feature.module';
 import { QuoteFeatureModule } from './features/quote/quote-feature.module';
 import { OrganizationUserRegistrationFeatureModule } from './features/registration-feature.module';
+import { EySuccessPageModule } from '../../feature-libs/organization/ey-user-registration/components/form/ey-success-page/ey-success-page.module';
 
 @NgModule({
   declarations: [],
@@ -168,6 +169,7 @@ import { OrganizationUserRegistrationFeatureModule } from './features/registrati
     ProductVariantsFeatureModule,
     ProductImageZoomFeatureModule,
     QuoteFeatureModule,
+    EySuccessPageModule,
   ],
   providers: [
     provideFeatureToggles({

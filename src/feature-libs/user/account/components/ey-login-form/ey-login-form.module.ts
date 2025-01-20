@@ -10,7 +10,6 @@ import {
   GlobalMessageService,
   I18nModule,
   NotAuthGuard,
-  provideDefaultConfig,
   UrlModule,
   WindowRef,
 } from '@spartacus/core';
@@ -21,7 +20,6 @@ import {
 } from '@spartacus/storefront';
 import { LoginFormComponentService } from '@spartacus/user/account/components';
 import { EyLoginFormComponent } from './ey-login-form.component';
-import { RegisterComponent } from '@spartacus/user/profile/components';
 
 @NgModule({
   imports: [
@@ -38,7 +36,7 @@ import { RegisterComponent } from '@spartacus/user/profile/components';
     ConfigModule.withConfig({
       cmsComponents: {
         ReturningCustomerLoginComponent: {
-          component: EyLoginFormComponent,
+          component: EyLoginFormComponent, 
           guards: [NotAuthGuard],
           providers: [
             {
@@ -51,7 +49,5 @@ import { RegisterComponent } from '@spartacus/user/profile/components';
       },
     } as CmsConfig),
   ],
-  providers: [],
-  declarations: [EyLoginFormComponent],
 })
 export class LoginFormModule {}
