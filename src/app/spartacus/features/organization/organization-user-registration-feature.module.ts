@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CmsConfig, I18nConfig, provideConfig } from '@spartacus/core';
 import {
-  organizationUserRegistrationTranslationChunksConfig,
-  organizationUserRegistrationTranslations,
-} from '@spartacus/organization/user-registration/assets';
-import {
   ORGANIZATION_USER_REGISTRATION_FEATURE,
   OrganizationUserRegistrationRootModule,
 } from '@spartacus/organization/user-registration/root';
+import {
+  organizationUserRegistrationTranslationChunksConfig,
+  organizationUserRegistrationTranslations,
+} from '../../../feature-libs/organization/ey-user-registration/assets/translations/translations/translations';
 
 @NgModule({
   declarations: [],

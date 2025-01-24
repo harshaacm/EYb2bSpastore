@@ -22,6 +22,7 @@ import { LoginFormComponentService } from '@spartacus/user/account/components';
 import { EyLoginFormComponent } from './ey-login-form.component';
 
 @NgModule({
+  declarations: [EyLoginFormComponent],
   imports: [
     CommonModule,
     FormsModule,

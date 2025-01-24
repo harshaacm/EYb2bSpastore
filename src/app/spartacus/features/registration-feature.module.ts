@@ -7,7 +7,7 @@ import {
 import {
   organizationUserRegistrationTranslationChunksConfig,
   organizationUserRegistrationTranslations,
-} from '../../../feature-libs/organization/ey-user-registration/assets/translations/translations/translations';
+} from '../../feature-libs/organization/ey-user-registration/assets/translations/translations/translations';
 
 @NgModule({
   imports: [OrganizationUserRegistrationRootModule],
