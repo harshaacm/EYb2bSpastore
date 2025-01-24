@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './ey-success-page.component.html',
   styleUrl: './ey-success-page.component.scss'
 })
-export class EySuccessPageComponent {
-
-}
+export class EySuccessPageComponent {}
