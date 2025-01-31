@@ -67,6 +67,18 @@
       "message": {
         "label": "Message (optional)",
         "placeholder": "An example data for the message field: \"Department: Ground support; Position: Chief safe guard; Report to: Steve Jackson; Comments: Please create new account for me\"."
+      },
+      "identity": {
+        "label": "Identity Type",
+        "placeholder": "select Identity Type",
+        "placeholder2": "Enter Identity number",
+        "adhaar": "ADHAAR",
+        "pan": "PAN",
+        "passport": "Passport",
+        "idnumber": "Identity Number",
+        "validfrom": "Valid from",
+        "validto": "valid to",
+        "dl": "Driving License"
       }
     },
     "messageToApproverTemplate": "Company name: {{companyName}},\n  Phone number: {{phoneNumber}},\n  Address: {{addressLine}} {{secondAddressLine}} {{city}} {{state}} {{postalCode}} {{country}},\n  Message: {{message}}",

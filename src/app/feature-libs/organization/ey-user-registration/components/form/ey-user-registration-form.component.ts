@@ -42,6 +42,10 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
   });
 
   maxDate!: string;
+  maxValidFromDate!: string;
+  minValidToDate!: string;
+  maxValidToDate!: string;
+  showDatePickers = false;
 
   genders = [
     { name: 'Male', code: 'Male' },
@@ -63,6 +67,7 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
   ) {
     this.registerForm = this.createForm();
     this.setMaxDateForDOB();
+    this.setDateConstraints();
     this.calculateAge();
   }
 
@@ -88,11 +93,17 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
       }),
       phoneNumber: [''],
       message: [''],
-      // New Fields
       gender: [null, Validators.required],
       dob: [null, [Validators.required, this.dobValidator]],
       age: [{ value: null, disabled: true }],
       qualification: [null, Validators.required],
+      identityType: [null, Validators.required],
+      identityDetails: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')],
+      ],
+      validFrom: [null],
+      validTo: [null],
     });
   }
 
@@ -152,6 +163,43 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     );
   }
 
+  private setDateConstraints(): void {
+    const currentDate = new Date();
+    const maxValidFrom = new Date();
+    maxValidFrom.setFullYear(currentDate.getFullYear() - 10);
+
+    const maxValidTo = new Date();
+    maxValidTo.setFullYear(currentDate.getFullYear() + 10);
+    const minValidTo = new Date();
+
+    this.maxValidFromDate = this.formatDate(maxValidFrom);
+    this.minValidToDate = this.formatDate(minValidTo);
+    this.maxValidToDate = this.formatDate(maxValidTo);
+  }
+
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
+
+  onIdentityTypeChange(): void {
+    const identityType = this.registerForm.get('identityType')?.value;
+    const validFromControl = this.registerForm.get('validFrom');
+    const validToControl = this.registerForm.get('validTo');
+
+    if (identityType === 'Aadhar' || identityType === 'PAN') {
+      this.showDatePickers = false;
+      validFromControl?.clearValidators();
+      validToControl?.clearValidators();
+    } else {
+      this.showDatePickers = true;
+      validFromControl?.setValidators(Validators.required);
+      validToControl?.setValidators(Validators.required);
+    }
+
+    validFromControl?.updateValueAndValidity();
+    validToControl?.updateValueAndValidity();
+  }
+
   /**
    * Handles the form submission.
    */
@@ -162,10 +210,11 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
         this.EyuserRegistrationFormService.registerUser(
           this.registerForm
         ).subscribe({
-          complete: () => this.isLoading$.next(false),
+          complete: () => {
+            this.isLoading$.next(false);
+          },
           next: () => {
             this.router.navigate(['/ey-registration-success']);
-            console.log('test');
           },
           error: () => {
             this.isLoading$.next(false);

@@ -18,6 +18,7 @@ import {
 } from '@spartacus/storefront';
 import { EyUserRegistrationFormComponent } from './ey-user-registration-form.component';
 import { EyUserRegistrationFormService } from './ey-user-registration-form.service';
+import { UserRegistrationFacadeImpl } from '../../root/facade/user-registration.facade';
 
 @NgModule({
   imports: [
@@ -42,6 +43,6 @@ import { EyUserRegistrationFormService } from './ey-user-registration-form.servi
   ],
   declarations: [EyUserRegistrationFormComponent],
   exports: [EyUserRegistrationFormComponent],
-  providers: [EyUserRegistrationFormService],
+  providers: [EyUserRegistrationFormService, UserRegistrationFacadeImpl],
 })
 export class EyUserRegistrationFormModule {}

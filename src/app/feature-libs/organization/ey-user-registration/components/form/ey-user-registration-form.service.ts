@@ -16,10 +16,8 @@ import {
   TranslationService,
   UserAddressService,
 } from '@spartacus/core';
-import {
-  OrganizationUserRegistration,
-  UserRegistrationFacade,
-} from '@spartacus/organization/user-registration/root';
+import { OrganizationUserRegistration } from '../../root/model/user-registration.model';
+import { UserRegistrationFacadeImpl } from '../../root/facade/user-registration.facade';
 import { CustomFormValidators } from '@spartacus/storefront';
 import { Title, UserRegisterFacade } from '@spartacus/user/profile/root';
 import { Observable, of } from 'rxjs';
@@ -81,7 +79,7 @@ export class EyUserRegistrationFormService {
   constructor(
     protected userRegisterFacade: UserRegisterFacade,
     protected userAddressService: UserAddressService,
-    protected organizationUserRegistrationFacade: UserRegistrationFacade,
+    protected organizationUserRegistrationFacade: UserRegistrationFacadeImpl,
     protected translationService: TranslationService,
     protected globalMessageService: GlobalMessageService,
     protected authConfigService: AuthConfigService,
@@ -181,17 +179,17 @@ export class EyUserRegistrationFormService {
           firstName: form.get('firstName')?.value,
           lastName: form.get('lastName')?.value,
           email: form.get('email')?.value,
-          // gender: form.get('gender')?.value,
-          // dob: form.get('dob')?.value,
-          // age: form.get('age')?.value,
-          // qualification: form.get('qualification')?.value,
-          // companyName: form.get('companyName')?.value,
-          // isocode: form.get('isocode')?.value,
-          // line1: form.get('line1')?.value,
-          // line2: form.get('line2')?.value,
-          // town: form.get('town')?.value,
-          // postalCode: form.get('postalCode')?.value,
-          // phoneNumber: form.get('phoneNumber')?.value,
+          gender: form.get('gender')?.value,
+          dob: form.get('dob')?.value,
+          age: form.get('age')?.value,
+          qualification: form.get('qualification')?.value,
+          companyName: form.get('companyName')?.value,
+          isocode: form.get('isocode')?.value,
+          line1: form.get('line1')?.value,
+          line2: form.get('line2')?.value,
+          town: form.get('town')?.value,
+          postalCode: form.get('postalCode')?.value,
+          phoneNumber: form.get('phoneNumber')?.value,
           message: message,
         })
       ),
