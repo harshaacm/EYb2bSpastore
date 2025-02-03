@@ -152,9 +152,11 @@
     </label>
 
     <label>
-      <span class="label-content">{{
-        "userRegistrationForm.fields.identity.label" | cxTranslate
-      }}</span>
+      <span class="label-content">
+        <span class="label-content">{{
+          "userRegistrationForm.fields.identity.label" | cxTranslate
+        }}</span></span
+      >
       <select
         class="form-control"
         formControlName="identityType"
@@ -165,25 +167,11 @@
             "userRegistrationForm.fields.identity.placeholder" | cxTranslate
           }}</span>
         </option>
-        <option value="Aadhar">
-          <span class="label-content">{{
-            "userRegistrationForm.fields.identity.adhaar" | cxTranslate
-          }}</span>
-        </option>
-        <option value="PAN">
-          <span class="label-content">{{
-            "userRegistrationForm.fields.identity.pan" | cxTranslate
-          }}</span>
-        </option>
-        <option value="Driving License">
-          <span class="label-content">{{
-            "userRegistrationForm.fields.identity.passport" | cxTranslate
-          }}</span>
-        </option>
-        <option value="Passport">
-          <span class="label-content">{{
-            "userRegistrationForm.fields.identity.dl" | cxTranslate
-          }}</span>
+        <option
+          *ngFor="let option of identityConfig.options"
+          [value]="option.value"
+        >
+          {{ option.label }}
         </option>
       </select>
       <cx-form-errors
@@ -192,15 +180,18 @@
     </label>
 
     <label>
-      <span class="label-content required"
-        ><span class="label-content">{{
+      <span class="label-content required">
+        <span class="label-content">{{
           "userRegistrationForm.fields.identity.idnumber" | cxTranslate
-        }}</span></span
-      >
+        }}</span>
+      </span>
       <input
         class="form-control"
         type="text"
         formControlName="identityDetails"
+        placeholder="{{
+          'userRegistrationForm.fields.identity.idnumberplace' | cxTranslate
+        }}"
       />
       <cx-form-errors
         [control]="registerForm.get('identityDetails')"
@@ -209,11 +200,11 @@
 
     <div *ngIf="showDatePickers">
       <label>
-        <span class="label-content required"
-          ><span class="label-content">{{
+        <span class="label-content required">
+          <span class="label-content">{{
             "userRegistrationForm.fields.identity.validfrom" | cxTranslate
-          }}</span></span
-        >
+          }}</span>
+        </span>
         <input
           class="form-control"
           type="date"
@@ -226,11 +217,11 @@
       </label>
 
       <label>
-        <span class="label-content required"
-          ><span class="label-content">{{
+        <span class="label-content required">
+          <span class="label-content">{{
             "userRegistrationForm.fields.identity.validto" | cxTranslate
-          }}</span></span
-        >
+          }}</span>
+        </span>
         <input
           class="form-control"
           type="date"

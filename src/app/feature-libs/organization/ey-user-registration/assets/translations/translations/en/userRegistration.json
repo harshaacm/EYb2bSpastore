@@ -77,7 +77,8 @@
         "idnumber": "Identity Number",
         "validfrom": "Valid from",
         "validto": "valid to",
-        "dl": "Driving License"
+        "dl": "Driving License",
+        "idnumberplace": "Enter Identity Number"
       }
     },
     "messageToApproverTemplate": "Company name: {{companyName}},\n  Phone number: {{phoneNumber}},\n  Address: {{addressLine}} {{secondAddressLine}} {{city}} {{state}} {{postalCode}} {{country}},\n  Message: {{message}}",

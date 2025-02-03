@@ -32,11 +32,8 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     this.EyuserRegistrationFormService.getRegions();
 
   registerForm: FormGroup;
-
   isLoading$ = new BehaviorSubject(false);
-
   protected subscriptions = new Subscription();
-
   protected globalMessageService = inject(GlobalMessageService, {
     optional: true,
   });
@@ -59,6 +56,16 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     { name: 'INTERMEDIATE', code: 'INTERMEDIATE' },
     { name: 'MATRICULATION', code: 'MATRICULATION' },
   ];
+
+  identityConfig = {
+    options: [
+      { value: 'Aadhar', label: 'Aadhar' },
+      { value: 'PAN', label: 'PAN' },
+      { value: 'Driving License', label: 'Driving License' },
+      { value: 'Passport', label: 'Passport' },
+    ],
+  };
+  option: any;
 
   constructor(
     protected EyuserRegistrationFormService: EyUserRegistrationFormService,
