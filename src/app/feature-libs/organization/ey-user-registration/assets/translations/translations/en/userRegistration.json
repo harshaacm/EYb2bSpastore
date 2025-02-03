@@ -71,7 +71,6 @@
       "identity": {
         "label": "Identity Type",
         "placeholder": "select Identity Type",
-        "placeholder2": "Enter Identity number",
         "adhaar": "ADHAAR",
         "pan": "PAN",
         "passport": "Passport",

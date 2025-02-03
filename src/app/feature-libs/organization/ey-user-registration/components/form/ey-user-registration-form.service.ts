@@ -52,6 +52,13 @@ export class EyUserRegistrationFormService {
       postalCode: [''],
       phoneNumber: [''],
       message: [''],
+      identityType: [null, Validators.required],
+      identityDetails: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')],
+      ],
+      validFrom: [null],
+      validTo: [null],
     });
   }
 
@@ -190,6 +197,10 @@ export class EyUserRegistrationFormService {
           town: form.get('town')?.value,
           postalCode: form.get('postalCode')?.value,
           phoneNumber: form.get('phoneNumber')?.value,
+          identityType: form.get('identityType')?.value,
+          identityDetails: form.get('identityDetails')?.value,
+          validFrom: form.get('validFrom')?.value,
+          validTo: form.get('validTo')?.value,
           message: message,
         })
       ),

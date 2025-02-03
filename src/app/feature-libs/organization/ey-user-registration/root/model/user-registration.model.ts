@@ -15,6 +15,10 @@ export interface OrganizationUserRegistration {
   town: string;
   postalCode: string;
   phoneNumber?: string;
+  identityType: string;
+  identityDetails: string;
+  validFrom: string;
+  validTo: string;
 }
 
 export interface OrganizationUserRegistrationForm
