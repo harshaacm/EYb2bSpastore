@@ -53,7 +53,7 @@ export class EyUserRegistrationFormService {
       phoneNumber: [''],
       message: [''],
       identityType: [null, Validators.required],
-      identityDetails: [
+      identityNumber: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')],
       ],
@@ -198,7 +198,7 @@ export class EyUserRegistrationFormService {
           postalCode: form.get('postalCode')?.value,
           phoneNumber: form.get('phoneNumber')?.value,
           identityType: form.get('identityType')?.value,
-          identityDetails: form.get('identityDetails')?.value,
+          identityNumber: form.get('identityNumber')?.value,
           validFrom: form.get('validFrom')?.value,
           validTo: form.get('validTo')?.value,
           message: message,

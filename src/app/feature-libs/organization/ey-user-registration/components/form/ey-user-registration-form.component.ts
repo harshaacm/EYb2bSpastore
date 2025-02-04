@@ -105,7 +105,7 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
       age: [{ value: null, disabled: true }],
       qualification: [null, Validators.required],
       identityType: [null, Validators.required],
-      identityDetails: [
+      identityNumber: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')],
       ],

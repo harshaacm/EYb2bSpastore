@@ -16,7 +16,7 @@ export interface OrganizationUserRegistration {
   postalCode: string;
   phoneNumber?: string;
   identityType: string;
-  identityDetails: string;
+  identityNumber: string;
   validFrom: string;
   validTo: string;
 }
