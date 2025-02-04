@@ -152,6 +152,90 @@
     </label>
 
     <label>
+      <span class="label-content">
+        <span class="label-content">{{
+          "userRegistrationForm.fields.identity.label" | cxTranslate
+        }}</span></span
+      >
+      <select
+        class="form-control"
+        formControlName="identityType"
+        (change)="onIdentityTypeChange()"
+      >
+        <option value="" disabled selected>
+          <span class="label-content">{{
+            "userRegistrationForm.fields.identity.placeholder" | cxTranslate
+          }}</span>
+        </option>
+        <option
+          *ngFor="let option of identityConfig.options"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+      <cx-form-errors
+        [control]="registerForm.get('identityType')"
+      ></cx-form-errors>
+    </label>
+
+    <label>
+      <span class="label-content required">
+        <span class="label-content">{{
+          "userRegistrationForm.fields.identity.idnumber" | cxTranslate
+        }}</span>
+      </span>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="identityNumber"
+        placeholder="{{
+          'userRegistrationForm.fields.identity.idnumberplace' | cxTranslate
+        }}"
+      />
+      <cx-form-errors
+        [control]="registerForm.get('identityNumber')"
+      ></cx-form-errors>
+    </label>
+
+    <div *ngIf="showDatePickers">
+      <label>
+        <span class="label-content required">
+          <span class="label-content">{{
+            "userRegistrationForm.fields.identity.validfrom" | cxTranslate
+          }}</span>
+        </span>
+        <input
+          class="form-control"
+          type="date"
+          formControlName="validFrom"
+          [max]="maxValidFromDate"
+        />
+        <cx-form-errors
+          [control]="registerForm.get('validFrom')"
+        ></cx-form-errors>
+      </label>
+
+      <label>
+        <span class="label-content required">
+          <span class="label-content">{{
+            "userRegistrationForm.fields.identity.validto" | cxTranslate
+          }}</span>
+        </span>
+        <input
+          class="form-control"
+          type="date"
+          formControlName="validTo"
+          [min]="minValidToDate"
+          [max]="maxValidToDate"
+        />
+        <cx-form-errors
+          [control]="registerForm.get('validTo')"
+        ></cx-form-errors>
+      </label>
+    </div>
+
+    <label>
       <span class="label-content required"
         >{{
           "userRegistrationForm.fields.qualification.label" | cxTranslate
