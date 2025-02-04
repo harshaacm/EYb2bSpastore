@@ -61,7 +61,7 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     options: [
       { value: 'Aadhar', label: 'Aadhar' },
       { value: 'PAN', label: 'PAN' },
-      { value: 'Driving License', label: 'Driving License' },
+      { value: 'Driving_License', label: 'Driving License' },
       { value: 'Passport', label: 'Passport' },
     ],
   };
