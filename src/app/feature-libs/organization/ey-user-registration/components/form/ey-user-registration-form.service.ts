@@ -29,12 +29,9 @@ import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 export class EyUserRegistrationFormService {
   private _form: FormGroup = this.buildForm();
 
-  /*
-   * Initializes form structure for registration.
-   */
   protected buildForm(): FormGroup {
     return this.formBuilder.group({
-      titleCode: [null],
+      titleCode: [null, Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       gender: [null, Validators.required],
@@ -52,6 +49,9 @@ export class EyUserRegistrationFormService {
       postalCode: [''],
       phoneNumber: [''],
       message: [''],
+      dob: [null, [Validators.required, this.dobValidator.bind(this)]],
+      age: [{ value: null, disabled: true }],
+      qualification: [null, Validators.required],
       identityType: [null, Validators.required],
       identityNumber: [
         '',
@@ -62,37 +62,51 @@ export class EyUserRegistrationFormService {
     });
   }
 
-  /*
-   * Gets form structure for registration.
+  /**
+   * Public getter for the registration form.
    */
   public get form(): FormGroup {
     return this._form;
   }
 
-  /*
-   * Gets form control for country isocode.
+  /**
+   * Custom validator that ensures the user is at least 18 years old.
    */
-  public get countryControl(): AbstractControl | null {
-    return this.form.get('country.isocode');
+  dobValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control.value) {
+      const today = new Date();
+      const dob = new Date(control.value);
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      if (
+        age < 18 ||
+        (age === 18 && monthDiff < 0) ||
+        (age === 18 && monthDiff === 0 && today.getDate() < dob.getDate())
+      ) {
+        return { underage: true };
+      }
+    }
+    return null;
   }
 
-  /*
-   *  Gets form control for region isocode.
+  /**
+   * Dynamically updates the validators for validFrom and validTo based on identityType.
    */
-  public get regionControl(): AbstractControl | null {
-    return this.form.get('region.isocode');
-  }
+  updateIdentityTypeValidators(form: FormGroup): void {
+    const identityType = form.get('identityType')?.value;
+    const validFromControl = form.get('validFrom');
+    const validToControl = form.get('validTo');
 
-  constructor(
-    protected userRegisterFacade: UserRegisterFacade,
-    protected userAddressService: UserAddressService,
-    protected organizationUserRegistrationFacade: UserRegistrationFacadeImpl,
-    protected translationService: TranslationService,
-    protected globalMessageService: GlobalMessageService,
-    protected authConfigService: AuthConfigService,
-    protected routingService: RoutingService,
-    protected formBuilder: FormBuilder
-  ) {}
+    if (identityType === 'Aadhar' || identityType === 'PAN') {
+      validFromControl?.clearValidators();
+      validToControl?.clearValidators();
+    } else {
+      validFromControl?.setValidators(Validators.required);
+      validToControl?.setValidators(Validators.required);
+    }
+    validFromControl?.updateValueAndValidity();
+    validToControl?.updateValueAndValidity();
+  }
 
   /**
    * Gets all title codes.
@@ -102,7 +116,7 @@ export class EyUserRegistrationFormService {
   }
 
   /**
-   * Gets all countries list.
+   * Gets the list of countries.
    */
   getCountries(): Observable<Country[]> {
     return this.userAddressService.getDeliveryCountries().pipe(
@@ -115,7 +129,7 @@ export class EyUserRegistrationFormService {
   }
 
   /**
-   * Gets all regions list for specific selected country.
+   * Gets regions for the selected country.
    */
   getRegions(): Observable<Region[]> {
     const regions: Region[] = [];
@@ -131,7 +145,21 @@ export class EyUserRegistrationFormService {
   }
 
   /**
-   * Takes form values and builds custom message content.
+   * Gets form control for country isocode.
+   */
+  public get countryControl(): AbstractControl | null {
+    return this.form.get('country.isocode');
+  }
+
+  /**
+   * Gets form control for region isocode.
+   */
+  public get regionControl(): AbstractControl | null {
+    return this.form.get('region.isocode');
+  }
+
+  /**
+   * Builds a custom message content based on form values.
    */
   protected buildMessageContent(form: FormGroup): Observable<string> {
     return this.translationService.translate(
@@ -151,19 +179,17 @@ export class EyUserRegistrationFormService {
   }
 
   /**
-   * Displays confirmation global message.
+   * Displays a global confirmation message.
    */
   protected displayGlobalMessage(error: any): void {
-    return this.globalMessageService.add(
+    this.globalMessageService.add(
       { key: 'userRegistrationForm.successFormSubmitMessage' },
       GlobalMessageType.MSG_TYPE_CONFIRMATION
     );
   }
 
   /**
-   * Redirects the user back to the login page.
-   *
-   * This only happens in case of the `ResourceOwnerPasswordFlow` OAuth flow.
+   * Redirects the user to the login page (if using ResourceOwnerPasswordFlow).
    */
   protected redirectToLogin(): void {
     if (
@@ -175,7 +201,7 @@ export class EyUserRegistrationFormService {
   }
 
   /**
-   * Registers new organization user.
+   * Registers a new organization user.
    */
   registerUser(form: FormGroup): Observable<OrganizationUserRegistration> {
     return this.buildMessageContent(form).pipe(
@@ -213,4 +239,15 @@ export class EyUserRegistrationFormService {
       })
     );
   }
+
+  constructor(
+    protected userRegisterFacade: UserRegisterFacade,
+    protected userAddressService: UserAddressService,
+    protected organizationUserRegistrationFacade: UserRegistrationFacadeImpl,
+    protected translationService: TranslationService,
+    public globalMessageService: GlobalMessageService,
+    protected authConfigService: AuthConfigService,
+    protected routingService: RoutingService,
+    protected formBuilder: FormBuilder
+  ) {}
 }

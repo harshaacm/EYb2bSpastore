@@ -1,10 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnDestroy,
-} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import {
   Country,
   GlobalMessageService,
@@ -23,20 +18,17 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EyUserRegistrationFormComponent implements OnDestroy {
-  titles$: Observable<Title[]> = this.EyuserRegistrationFormService.getTitles();
-
+  titles$: Observable<Title[]> = this.EyUserRegistrationFormService.getTitles();
   countries$: Observable<Country[]> =
-    this.EyuserRegistrationFormService.getCountries();
-
+    this.EyUserRegistrationFormService.getCountries();
   regions$: Observable<Region[]> =
-    this.EyuserRegistrationFormService.getRegions();
+    this.EyUserRegistrationFormService.getRegions();
 
-  registerForm: FormGroup;
+  registerForm: FormGroup = this.EyUserRegistrationFormService.form;
   isLoading$ = new BehaviorSubject(false);
   protected subscriptions = new Subscription();
-  protected globalMessageService = inject(GlobalMessageService, {
-    optional: true,
-  });
+  protected globalMessageService =
+    this.EyUserRegistrationFormService.globalMessageService;
 
   maxDate!: string;
   maxValidFromDate!: string;
@@ -65,86 +57,18 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
       { value: 'Passport', label: 'Passport' },
     ],
   };
-  option: any;
 
   constructor(
-    protected EyuserRegistrationFormService: EyUserRegistrationFormService,
-    protected fb: FormBuilder,
+    protected EyUserRegistrationFormService: EyUserRegistrationFormService,
     private router: Router
   ) {
-    this.registerForm = this.createForm();
     this.setMaxDateForDOB();
     this.setDateConstraints();
     this.calculateAge();
   }
 
   /**
-   * Initializes the registration form with required fields and validations.
-   */
-  protected createForm(): FormGroup {
-    return this.fb.group({
-      titleCode: [null, Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      companyName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      country: this.fb.group({
-        isocode: [null],
-      }),
-      line1: [''],
-      line2: [''],
-      town: [''],
-      postalCode: [''],
-      region: this.fb.group({
-        isocode: [null],
-      }),
-      phoneNumber: [''],
-      message: [''],
-      gender: [null, Validators.required],
-      dob: [null, [Validators.required, this.dobValidator]],
-      age: [{ value: null, disabled: true }],
-      qualification: [null, Validators.required],
-      identityType: [null, Validators.required],
-      identityNumber: [
-        '',
-        [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')],
-      ],
-      validFrom: [null],
-      validTo: [null],
-    });
-  }
-
-  /**
-   * Validates the DOB to ensure the user is at least 18 years old.
-   */
-  protected dobValidator(control: any): { [key: string]: boolean } | null {
-    if (control.value) {
-      const today = new Date();
-      const dob = new Date(control.value);
-      const age = today.getFullYear() - dob.getFullYear();
-      const monthDiff = today.getMonth() - dob.getMonth();
-      if (
-        age < 18 ||
-        (age === 18 && monthDiff < 0) ||
-        (age === 18 && monthDiff === 0 && today.getDate() < dob.getDate())
-      ) {
-        return { underage: true };
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Sets the max date for the DOB field to today's date minus 18 years.
-   */
-  protected setMaxDateForDOB(): void {
-    const today = new Date();
-    today.setFullYear(today.getFullYear() - 18);
-    this.maxDate = today.toISOString().split('T')[0]; // Format YYYY-MM-DD
-  }
-
-  /**
-   * Updates the age field whenever the DOB field changes.
+   * Calculates the age based on the DOB control and updates the age field.
    */
   protected calculateAge(): void {
     const dobControl = this.registerForm.get('dob');
@@ -170,51 +94,28 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     );
   }
 
-  private setDateConstraints(): void {
-    const currentDate = new Date();
-    const maxValidFrom = new Date();
-    maxValidFrom.setFullYear(currentDate.getFullYear() - 10);
-
-    const maxValidTo = new Date();
-    maxValidTo.setFullYear(currentDate.getFullYear() + 10);
-    const minValidTo = new Date();
-
-    this.maxValidFromDate = this.formatDate(maxValidFrom);
-    this.minValidToDate = this.formatDate(minValidTo);
-    this.maxValidToDate = this.formatDate(maxValidTo);
-  }
-
-  private formatDate(date: Date): string {
-    return date.toISOString().split('T')[0];
-  }
-
+  /**
+   * Called when the identity type changes.
+   * Delegates the updating of validators to the service.
+   */
   onIdentityTypeChange(): void {
+    this.EyUserRegistrationFormService.updateIdentityTypeValidators(
+      this.registerForm
+    );
     const identityType = this.registerForm.get('identityType')?.value;
-    const validFromControl = this.registerForm.get('validFrom');
-    const validToControl = this.registerForm.get('validTo');
-
-    if (identityType === 'Aadhar' || identityType === 'PAN') {
-      this.showDatePickers = false;
-      validFromControl?.clearValidators();
-      validToControl?.clearValidators();
-    } else {
-      this.showDatePickers = true;
-      validFromControl?.setValidators(Validators.required);
-      validToControl?.setValidators(Validators.required);
-    }
-
-    validFromControl?.updateValueAndValidity();
-    validToControl?.updateValueAndValidity();
+    this.showDatePickers = !(
+      identityType === 'Aadhar' || identityType === 'PAN'
+    );
   }
 
   /**
-   * Handles the form submission.
+   * Handles form submission.
    */
   submit(): void {
     if (this.registerForm.valid) {
       this.isLoading$.next(true);
       this.subscriptions.add(
-        this.EyuserRegistrationFormService.registerUser(
+        this.EyUserRegistrationFormService.registerUser(
           this.registerForm
         ).subscribe({
           complete: () => {
@@ -235,6 +136,36 @@ export class EyUserRegistrationFormComponent implements OnDestroy {
     } else {
       this.registerForm.markAllAsTouched();
     }
+  }
+
+  /**
+   * Sets the maximum date for DOB (today minus 18 years).
+   */
+  protected setMaxDateForDOB(): void {
+    const today = new Date();
+    today.setFullYear(today.getFullYear() - 18);
+    this.maxDate = today.toISOString().split('T')[0];
+  }
+
+  /**
+   * Sets constraints for validFrom and validTo date pickers.
+   */
+  private setDateConstraints(): void {
+    const currentDate = new Date();
+    const maxValidFrom = new Date();
+    maxValidFrom.setFullYear(currentDate.getFullYear() - 10);
+
+    const maxValidTo = new Date();
+    maxValidTo.setFullYear(currentDate.getFullYear() + 10);
+    const minValidTo = new Date();
+
+    this.maxValidFromDate = this.formatDate(maxValidFrom);
+    this.minValidToDate = this.formatDate(minValidTo);
+    this.maxValidToDate = this.formatDate(maxValidTo);
+  }
+
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0];
   }
 
   ngOnDestroy(): void {
